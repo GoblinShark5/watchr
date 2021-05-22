@@ -3,7 +3,7 @@ const db = require('../models/userModels');
 const userController = {};
 
 userController.login = (req, res, next) => {
-  const loginQuery = 'SELECT username FROM users';
+  const loginQuery = 'SELECT username FROM users'; // <-- fix this query
 
   db.query(loginQuery, (err, data) => {
     if (err) {
