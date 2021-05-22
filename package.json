@@ -20,6 +20,7 @@
 	},
 	"homepage": "https://github.com/kyunglee1/watcher#readme",
 	"dependencies": {
+		"pg": "^8.6.0",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",
 		"webpack": "^5.37.1"
