@@ -32,3 +32,4 @@ ALTER TABLE watchrschema.usersmovies ADD FOREIGN KEY ("moviename") REFERENCES wa
 )
 
 SET search_path TO watchrschema,public;
+
