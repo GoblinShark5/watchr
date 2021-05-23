@@ -1,13 +1,15 @@
-import express, { json, urlencoded } from 'express';
-import path from 'path';
-import apiRouter from './routes/api';
+// import express, { json, urlencoded } from 'express';
+const express = require('express');
+const path = require('path');
+const apiRouter = require('./routes/api');
 
+// const router = express.Router();
 const app = express();
 
-app.use(json());
-app.use(urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.use('/', path.resolve(__dirname, '../index.html'));
+// app.use('/', path.resolve(__dirname, '../index.html'));
 
 app.use('/', apiRouter);
 
@@ -24,4 +26,4 @@ app.listen(3000, () => {
   console.log('Server listening on port: 3000');
 });
 
-export default app;
+module.exports = app;

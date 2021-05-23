@@ -20,11 +20,13 @@
 	},
 	"homepage": "https://github.com/kyunglee1/watcher#readme",
 	"dependencies": {
+		"axios": "^0.21.1",
 		"express": "^4.17.1",
 		"path": "^0.12.7",
 		"pg": "^8.6.0",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",
+		"pg-promise": "^10.10.2",
 		"webpack": "^5.37.1"
 	},
 	"devDependencies": {

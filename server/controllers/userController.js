@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const db = require('../models/userModels');
 
 const userController = {};
