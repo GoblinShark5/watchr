@@ -1,33 +1,32 @@
 #login-container {
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-width: 20px;
   text-align: center;
+  z-index: -1;
+  flex-direction: column;
+  background: linear-gradient(blue, salmon);
+  /* background-image: url
+    (
+      'https://image.shutterstock.com/z/stock-photo-reel-of-film-on-a-black-white-background-426618697.jpg'
+    );
+  background-size: 100%; */
 }
 
 .Login-Manager {
   align-content: center;
-  background-color: rgb(121, 141, 172);
+  background-color: #ff8000;
   opacity: 0.8;
   /* padding-left: 350px; */
-  border-width: 1500px;
   border-color: black;
-  width: 900px;
-  height: 300px;
+  width: 1000px;
+  height: 100px;
   object-fit: cover;
   font-weight: bold;
-  background-image: url
-    (
-      'https://image.shutterstock.com/z/stock-photo-reel-of-film-on-a-black-white-background-426618697.jpg'
-    );
-  z-index: 900;
-}
-.Password {
-  align-content: center;
-}
-
-.Image {
+  background-position: center;
+  max-width: 600px;
+  max-height: 800px;
 }
 
 /* https://www.w3schools.com/cssref/default.asp */
@@ -37,3 +36,18 @@
 
 
 export default LoginManager.css */
+.user {
+  margin-right: 2em;
+}
+
+.imagine {
+  display: flex;
+  /* margin-top: 39em; */
+  margin-top: -2em;
+  max-width: 1000px;
+  max-height: 600px;
+  align-content: center;
+  background-position: center;
+  flex-direction: column;
+  /* padding-right: 400px; */
+}
