@@ -1,0 +1,39 @@
+#login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-width: 20px;
+  text-align: center;
+}
+
+.Login-Manager {
+  align-content: center;
+  background-color: rgb(121, 141, 172);
+  opacity: 0.8;
+  /* padding-left: 350px; */
+  border-width: 1500px;
+  border-color: black;
+  width: 900px;
+  height: 300px;
+  object-fit: cover;
+  font-weight: bold;
+  background-image: url
+    (
+      'https://image.shutterstock.com/z/stock-photo-reel-of-film-on-a-black-white-background-426618697.jpg'
+    );
+  z-index: 900;
+}
+.Password {
+  align-content: center;
+}
+
+.Image {
+}
+
+/* https://www.w3schools.com/cssref/default.asp */
+/* Css White Space property to specify how white space w/in an element is handled https://www.w3schools.com/cssref/pr_text_white-space.asp */
+
+/* The link for Resizing an element: https://www.w3schools.com/cssref/css3_pr_resiz
+
+
+export default LoginManager.css */
