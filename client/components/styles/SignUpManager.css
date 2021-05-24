@@ -1,8 +1,24 @@
+#signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: blanchedalmond;
+}
+
 #signup-form {
   border: thin solid black;
   border-radius: 1rem;
   width: fit-content;
   padding: 2rem;
+  background-color: rgb(250, 245, 245);
+}
+
+#signup-email,
+#signup-username,
+#signup-password {
+  display: flex;
+  align-items: center;
+  margin: 1rem;
 }
 
 #signup-form input[type='text'] {
@@ -17,6 +33,8 @@
 }
 
 #signup-form button {
+  margin-top: 1rem;
+  float: right;
   padding: 5px 15px;
   background: #ccc;
   border: 0 none;
