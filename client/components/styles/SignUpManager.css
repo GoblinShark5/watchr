@@ -1,0 +1,26 @@
+#signup-form {
+  border: thin solid black;
+  border-radius: 1rem;
+  width: fit-content;
+  padding: 2rem;
+}
+
+#signup-form input[type='text'] {
+  display: block;
+  padding: 5px;
+  border: 2px solid #ccc;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+#signup-form input[type='text']:focus {
+  border-color: #333;
+}
+
+#signup-form button {
+  padding: 5px 15px;
+  background: #ccc;
+  border: 0 none;
+  cursor: pointer;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
