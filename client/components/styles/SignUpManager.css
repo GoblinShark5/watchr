@@ -5,40 +5,52 @@
   background-color: blanchedalmond;
 }
 
+#signup-title {
+  display: flex;
+  justify-content: center;
+  font-size: 1.4rem;
+  margin-bottom: 2rem;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
 #signup-form {
   border: thin solid black;
   border-radius: 1rem;
-  width: fit-content;
+  width: 18%;
   padding: 2rem;
-  background-color: rgb(250, 245, 245);
+  background-color: rgb(253, 158, 158);
 }
 
 #signup-email,
 #signup-username,
 #signup-password {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   margin: 1rem;
 }
 
 #signup-form input[type='text'] {
   display: block;
+  width: 70%;
   padding: 5px;
   border: 2px solid #ccc;
   -webkit-border-radius: 5px;
   border-radius: 5px;
 }
 #signup-form input[type='text']:focus {
-  border-color: #333;
+  border-color: rgb(87, 85, 85);
 }
 
 #signup-form button {
   margin-top: 1rem;
   float: right;
   padding: 5px 15px;
-  background: #ccc;
+  color: white;
+  background: rgb(102, 162, 218);
   border: 0 none;
   cursor: pointer;
   -webkit-border-radius: 5px;
   border-radius: 5px;
+  border: thin solid black;
 }

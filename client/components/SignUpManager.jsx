@@ -80,6 +80,7 @@ class SignUpManager extends React.Component {
     return (
       <div id="signup-container">
         <form id="signup-form">
+          <span id="signup-title">Create Account</span>
           <div id="signup-email">
             Email:{' '}
             <input

@@ -63,8 +63,17 @@ class LoginManager extends React.Component {
             onChange={this.PasswordLoginHandler}
             value={this.state.password}
           />
-          <button onClick={this.handleOnClick}>Log In</button>
+          <br /> <br />
+          <button className="Loginbutton" onClick={this.handleOnClick}>
+            Log In
+          </button>
         </form>
+        <br /> <br />
+        <img
+          className="imagine"
+          src="https://image.shutterstock.com/image-photo/reel-film-on-blackwhite-background-600w-426618697.jpg"
+          alt="movie reels"
+        />
       </div>
     );
   }
