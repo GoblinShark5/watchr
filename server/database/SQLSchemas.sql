@@ -8,7 +8,9 @@ CREATE TABLE watchrschema.users (
   "username" varchar NOT NULL,
   "email" varchar NOT NULL,
   "password" varchar NOT NULL,
-  "movies" varchar
+  "netflix" boolean NOT NULL,
+  "hulu" boolean NOT NULL,
+  "amazon" boolean NOT NULL,
 );
 
 CREATE TABLE watchrschema.amazon (
