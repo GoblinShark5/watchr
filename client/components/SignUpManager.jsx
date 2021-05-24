@@ -77,7 +77,7 @@ import './styles/SignUpManager.css';
 //         User:{' '}
 //         <input
 //           type="text"
-//           onChange={this.handleOnChangeUser}
+//           onChange={thi"s.handleOnChangeUser}
 //           value={this.state.newUser}
 //           required
 //         />

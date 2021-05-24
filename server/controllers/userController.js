@@ -4,8 +4,8 @@ const db = require('../models/userModels');
 const userController = {};
 
 userController.signup = (req, res, next) => {
-  console.log('body', req.body);
-  console.log('query', req.query);
+  console.log('Signup body', req.body);
+  console.log('Signup query', req.query);
   const query = `
   INSERT INTO users(username, email, password, netflix, hulu, amazon)
   VALUES ('${req.body.newUser}', '${req.body.email}', '${req.body.newPassword}' , 
@@ -26,9 +26,10 @@ userController.login = (req, res, next) => {
   const loginQuery = `
   SELECT username, password
   FROM users
-  WHERE username = '${req.query.username}' AND password = '${req.query.password}'
-  `; // <-- fix this query
+  WHERE username = '${req.body.username}' AND password = '${req.body.password}'
+  `;
 
+  console.log('Made it to the login controller');
   db.query(loginQuery, (err, data) => {
     if (err) {
       console.log(`Database request error! ${err}`);
@@ -49,11 +50,14 @@ userController.setServices = (req, res, next) => {
   const query = `
   SELECT netflix, hulu, amazon
   FROM users
-  WHERE username = '${req.query.username}'
+  WHERE username = '${req.body.username}'
   `;
 
+  console.log('made it to the cookie controller');
+
   db.query(query).then((data) => {
-    console.log(typeof data.rows[0].netflix);
+    // console.log(typeof data.rows[0].netflix);
+    console.log(data.rows[0]);
     res.cookie('userServices', JSON.stringify(data.rows[0]));
     next();
   });
