@@ -17,17 +17,17 @@
   height: 300px;
   object-fit: cover;
   font-weight: bold;
+  background-image: url
+    (
+      'https://image.shutterstock.com/z/stock-photo-reel-of-film-on-a-black-white-background-426618697.jpg'
+    );
+  z-index: 900;
 }
 .Password {
   align-content: center;
 }
 
 .Image {
-  background-image: url
-    (
-      'https://www.shutterstock.com/image-photo/reel-film-on-blackwhite-background-426618697'
-    );
-  z-index: 900;
 }
 
 /* https://www.w3schools.com/cssref/default.asp */
