@@ -1,6 +1,6 @@
-
+/* eslint-disable react/button-has-type */
+/* eslint-disable react/destructuring-assignment */
 import React from 'react';
-import StreamConfirmation from './StreamConfirmation.jsx'
 
 // Class component inherits from React.Component in order to
 // use functionality (e.g. setState) present in React.Component
@@ -8,7 +8,7 @@ class SignUpManager extends React.Component {
   // Constructor method runs every time we render a *new* SignUpManager
   constructor() {
     super();
-    // Initialize state of our component 
+    // Initialize state of our component
     this.state = {
       newUser: '',
       newPassword: '',
@@ -22,55 +22,69 @@ class SignUpManager extends React.Component {
     this.handleOnClick = this.handleOnClick.bind(this);
   }
 
- handleOnClick = (e) =>{
-   e.preventDefault()
-   console.log('newUser', this.state.newUser)
-   console.log('newPassword', this.state.newPassword)
-   console.log('newEmail', this.state.email)
- }
+  handleOnClick(e) {
+    e.preventDefault();
+    console.log('newUser', this.state.newUser);
+    console.log('newPassword', this.state.newPassword);
+    console.log('newEmail', this.state.email);
+  }
 
-  // Handle input change, receives e argument if passed in as the 
+  // Handle input change, receives e argument if passed in as the
   // callback to onChange
-  handleOnChangeUser = (e) =>{
-    // Set ONLY the "newUser" state by passing in an object containing 
+  handleOnChangeUser(e) {
+    // Set ONLY the "newUser" state by passing in an object containing
     // "newUser" as a property with the corresponding, updated value
     this.setState({
       newUser: e.target.value,
     });
   }
 
-  handleOnChangePassword= (e) =>{
+  handleOnChangePassword(e) {
     this.setState({
       newPassword: e.target.value,
     });
   }
 
-    handleOnChangeEmail= (e) =>{
-      this.setState({
+  handleOnChangeEmail(e) {
+    this.setState({
       email: e.target.value,
     });
-  }   
+  }
+
   // What you want to render on the webpage
   render() {
-    // Return HTML/jsx elements 
+    // Return HTML/jsx elements
     // Must return a *single* element
     return (
       // <StreamConfirmation />
       <form>
-        <StreamConfirmation />
-       Email:  <input type ='text' onChange={this.handleOnChangeEmail} value={this.state.email}/>
-       User:  <input type="text" onChange={this.handleOnChangeUser} value={this.state.newUser}/>
-       Password:  <input type ='text' onChange={this.handleOnChangePassword} value={this.state.newPassword}/>
+        Email:{' '}
+        <input
+          type="text"
+          onChange={this.handleOnChangeEmail}
+          value={this.state.email}
+        />
+        User:{' '}
+        <input
+          type="text"
+          onChange={this.handleOnChangeUser}
+          value={this.state.newUser}
+        />
+        Password:{' '}
+        <input
+          type="text"
+          onChange={this.handleOnChangePassword}
+          value={this.state.newPassword}
+        />
         <button onClick={this.handleOnClick}> Sign Up </button>
       </form>
-  
     );
   }
-};
+}
 
-//create more onclick synthetic event listeners
-//button id
-//action set to end point
-//post method
+// create more onclick synthetic event listeners
+// button id
+// action set to end point
+// post method
 
 export default SignUpManager;
