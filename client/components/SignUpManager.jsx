@@ -1,6 +1,8 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
+import StreamSelect from './StreamSelect.jsx';
+import './styles/SignUpManager.css';
 
 // Class component inherits from React.Component in order to
 // use functionality (e.g. setState) present in React.Component

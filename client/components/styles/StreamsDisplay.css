@@ -1,0 +1,11 @@
+#streams-container {
+  border: thin solid black;
+  width: fit-content;
+}
+
+#streams-container img {
+  height: 80px;
+  width: 80px;
+  margin: 1rem;
+  border: thin solid gray;
+}

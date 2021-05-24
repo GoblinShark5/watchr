@@ -1,6 +1,7 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
+import './styles/MovieInputStyles.css';
 
 class MovieInput extends React.Component {
   constructor(props) {
@@ -9,25 +10,30 @@ class MovieInput extends React.Component {
       movieInput: '',
     };
     this.handleOnMovieChange = this.handleOnMovieChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleOnMovieChange(e) {
-    e.preventDefault();
     this.setState({
       movieInput: e.target.value,
     });
   }
 
+  handleSubmit() {
+    console.log('Movie: ', this.state.movieInput);
+  }
+
   render() {
     return (
-      <form>
+      <div id="signup-container">
+        <div id="movie-input-title">Where Can I Stream</div>
         <input
           type="text"
           onChange={this.handleOnMovieChange}
           value={this.state.movieInput}
         />
-        <button onClick={(e) => e.preventDefault()}> Submit Movie </button>
-      </form>
+        <button onClick={this.handleSubmit}>Search</button>
+      </div>
     );
   }
 }
