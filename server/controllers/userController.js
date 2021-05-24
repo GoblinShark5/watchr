@@ -4,13 +4,13 @@ const db = require('../models/userModels');
 const userController = {};
 
 userController.signup = (req, res, next) => {
+  console.log('body', req.body);
+  console.log('query', req.query);
   const query = `
   INSERT INTO users(username, email, password, netflix, hulu, amazon)
-  VALUES ('${req.query.username}', '${req.query.email}', '${
-    req.query.password
-  }', '${JSON.parse(req.query.netflix)}', '${JSON.parse(
-    req.query.hulu,
-  )}', '${JSON.parse(req.query.amazon)}')
+  VALUES ('${req.body.newUser}', '${req.body.email}', '${req.body.newPassword}' , 
+  '${JSON.parse(req.body.netflix)}', '${JSON.parse(req.body.hulu)}',
+  '${JSON.parse(req.body.amazon)}')
   `;
 
   db.query(query)

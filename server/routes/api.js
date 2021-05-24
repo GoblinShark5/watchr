@@ -11,7 +11,7 @@ router.get('/', dbController.insertNetflix, (req, res) => {
 });
 
 router.post('/signup', userController.signup, (req, res) => {
-  res.status(200).redirect('/');
+  res.status(200).send('is this wokring?!');
 });
 
 router.post(
