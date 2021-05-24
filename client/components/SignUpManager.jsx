@@ -78,32 +78,39 @@ class SignUpManager extends React.Component {
     ];
 
     return (
-      // <StreamConfirmation />
-      <form id="signup-form">
-        Email:{' '}
-        <input
-          type="text"
-          onChange={this.handleOnChangeEmail}
-          value={this.state.email}
-        />
-        User:{' '}
-        <input
-          type="text"
-          onChange={this.handleOnChangeUser}
-          value={this.state.newUser}
-        />
-        Password:{' '}
-        <input
-          type="text"
-          onChange={this.handleOnChangePassword}
-          value={this.state.newPassword}
-        />
-        <StreamSelect
-          streamPrefs={streamInputs}
-          onStreamChange={this.handleStreamChange}
-        />
-        <button onClick={this.handleSubmitClick}> Sign Up </button>
-      </form>
+      <div id="signup-container">
+        <form id="signup-form">
+          <div id="signup-email">
+            Email:{' '}
+            <input
+              type="text"
+              onChange={this.handleOnChangeEmail}
+              value={this.state.email}
+            />
+          </div>
+          <div id="signup-username">
+            Username:{' '}
+            <input
+              type="text"
+              onChange={this.handleOnChangeUser}
+              value={this.state.newUser}
+            />
+          </div>
+          <div id="signup-password">
+            Password:{' '}
+            <input
+              type="text"
+              onChange={this.handleOnChangePassword}
+              value={this.state.newPassword}
+            />
+          </div>
+          <StreamSelect
+            streamPrefs={streamInputs}
+            onStreamChange={this.handleStreamChange}
+          />
+          <button onClick={this.handleSubmitClick}> Sign Up </button>
+        </form>
+      </div>
     );
   }
 }

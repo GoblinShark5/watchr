@@ -1,6 +1,8 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
+import { Redirect } from 'react-router-dom';
+import './styles/LoginManager.css';
 
 class LoginManager extends React.Component {
   constructor() {
@@ -8,15 +10,23 @@ class LoginManager extends React.Component {
     this.state = {
       username: '',
       password: '',
+      redirect: '',
     };
     this.UserLoginHandler = this.UserLoginHandler.bind(this);
     this.PasswordLoginHandler = this.PasswordLoginHandler.bind(this);
     this.handleOnClick = this.handleOnClick.bind(this);
   }
 
+  // eslint-disable-next-line consistent-return
   handleOnClick(e) {
     e.preventDefault();
     console.log('Login: ', this.state);
+
+    if (this.state.username && this.state.password) {
+      this.setState({
+        redirect: '/homepage',
+      });
+    }
   }
 
   UserLoginHandler(e) {
@@ -32,22 +42,30 @@ class LoginManager extends React.Component {
   }
 
   render() {
+    if (this.state.redirect) {
+      return <Redirect to={this.state.redirect} />;
+    }
+
     return (
-      <form>
-        Username:
-        <input
-          type="text"
-          onChange={this.UserLoginHandler}
-          value={this.state.username}
-        />
-        Password:
-        <input
-          type="text"
-          onChange={this.PasswordLoginHandler}
-          value={this.state.password}
-        />
-        <button onClick={this.handleOnClick}>Log In</button>
-      </form>
+      <div id="login-container">
+        <form className="Login-Manager">
+          Username:
+          <input
+            className="user"
+            type="text"
+            onChange={this.UserLoginHandler}
+            value={this.state.username}
+          />
+          Password:
+          <input
+            className="Password"
+            type="text"
+            onChange={this.PasswordLoginHandler}
+            value={this.state.password}
+          />
+          <button onClick={this.handleOnClick}>Log In</button>
+        </form>
+      </div>
     );
   }
 }
