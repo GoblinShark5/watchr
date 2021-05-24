@@ -10,12 +10,17 @@ class MovieInput extends React.Component {
       movieInput: '',
     };
     this.handleOnMovieChange = this.handleOnMovieChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleOnMovieChange(e) {
     this.setState({
       movieInput: e.target.value,
     });
+  }
+
+  handleSubmit() {
+    console.log('Movie: ', this.state.movieInput);
   }
 
   render() {
@@ -27,7 +32,7 @@ class MovieInput extends React.Component {
           onChange={this.handleOnMovieChange}
           value={this.state.movieInput}
         />
-        <button>Search</button>
+        <button onClick={this.handleSubmit}>Search</button>
       </div>
     );
   }

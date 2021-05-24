@@ -15,20 +15,34 @@ class SignUpManager extends React.Component {
       newUser: '',
       newPassword: '',
       email: '',
+      amazon: false,
+      hulu: false,
+      netflix: false,
     };
 
     // Bind method to * this * particular instance of SignUpManager
     this.handleOnChangeUser = this.handleOnChangeUser.bind(this);
     this.handleOnChangePassword = this.handleOnChangePassword.bind(this);
     this.handleOnChangeEmail = this.handleOnChangeEmail.bind(this);
-    this.handleOnClick = this.handleOnClick.bind(this);
+    this.handleSubmitClick = this.handleSubmitClick.bind(this);
+    this.handleStreamChange = this.handleStreamChange.bind(this);
   }
 
-  handleOnClick(e) {
+  handleStreamChange(e) {
+    this.setState((prev) => {
+      const { name } = e.target;
+      const value = !prev[name];
+
+      return {
+        ...prev,
+        [name]: value,
+      };
+    });
+  }
+
+  handleSubmitClick(e) {
     e.preventDefault();
-    console.log('newUser:', this.state.newUser);
-    console.log('newPassword:', this.state.newPassword);
-    console.log('newEmail:', this.state.email);
+    console.log(this.state);
   }
 
   // Handle input change, receives e argument if passed in as the
@@ -57,6 +71,12 @@ class SignUpManager extends React.Component {
   render() {
     // Return HTML/jsx elements
     // Must return a *single* element
+    const streamInputs = [
+      this.state.amazon,
+      this.state.hulu,
+      this.state.netflix,
+    ];
+
     return (
       // <StreamConfirmation />
       <form id="signup-form">
@@ -78,8 +98,11 @@ class SignUpManager extends React.Component {
           onChange={this.handleOnChangePassword}
           value={this.state.newPassword}
         />
-        <StreamSelect />
-        <button onClick={this.handleOnClick}> Sign Up </button>
+        <StreamSelect
+          streamPrefs={streamInputs}
+          onStreamChange={this.handleStreamChange}
+        />
+        <button onClick={this.handleSubmitClick}> Sign Up </button>
       </form>
     );
   }
