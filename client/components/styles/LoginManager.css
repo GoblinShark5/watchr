@@ -6,7 +6,7 @@
   text-align: center;
   z-index: -1;
   flex-direction: column;
-  background-color: salmon;
+  background: linear-gradient(blue, salmon);
   /* background-image: url
     (
       'https://image.shutterstock.com/z/stock-photo-reel-of-film-on-a-black-white-background-426618697.jpg'
@@ -16,7 +16,7 @@
 
 .Login-Manager {
   align-content: center;
-  background-color: teal;
+  background-color: #ff8000;
   opacity: 0.8;
   /* padding-left: 350px; */
   border-color: black;
@@ -43,6 +43,7 @@ export default LoginManager.css */
 .imagine {
   display: flex;
   /* margin-top: 39em; */
+  margin-top: -2em;
   max-width: 1000px;
   max-height: 600px;
   align-content: center;
