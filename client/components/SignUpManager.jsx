@@ -1,6 +1,8 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
+import StreamSelect from './StreamSelect.jsx';
+import './styles/SignUpManager.css';
 
 // Class component inherits from React.Component in order to
 // use functionality (e.g. setState) present in React.Component
@@ -24,9 +26,9 @@ class SignUpManager extends React.Component {
 
   handleOnClick(e) {
     e.preventDefault();
-    console.log('newUser', this.state.newUser);
-    console.log('newPassword', this.state.newPassword);
-    console.log('newEmail', this.state.email);
+    console.log('newUser:', this.state.newUser);
+    console.log('newPassword:', this.state.newPassword);
+    console.log('newEmail:', this.state.email);
   }
 
   // Handle input change, receives e argument if passed in as the
@@ -57,7 +59,7 @@ class SignUpManager extends React.Component {
     // Must return a *single* element
     return (
       // <StreamConfirmation />
-      <form>
+      <form id="signup-form">
         Email:{' '}
         <input
           type="text"
@@ -76,6 +78,7 @@ class SignUpManager extends React.Component {
           onChange={this.handleOnChangePassword}
           value={this.state.newPassword}
         />
+        <StreamSelect />
         <button onClick={this.handleOnClick}> Sign Up </button>
       </form>
     );
