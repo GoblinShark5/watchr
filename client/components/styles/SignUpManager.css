@@ -1,0 +1,62 @@
+#signup-container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(5, 20, 70);
+}
+
+#signup-title {
+  display: flex;
+  justify-content: center;
+  font-size: 1.4rem;
+  margin-bottom: 2rem;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#signup-form {
+  border: .3rem groove rgb(255, 255, 255);
+  border-radius: 1rem;
+  width: 18%;
+  padding: 2rem;
+  padding-bottom: 1rem;
+  background-color: rgb(158, 199, 253);
+}
+
+#signup-email,
+#signup-username,
+#signup-password {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem;
+}
+
+#signup-form input[type='text'], 
+#signup-form input[type='email'], 
+#signup-form input[type='password'] {
+  display: block;
+  width: 70%;
+  padding: 5px;
+  border: 2px solid #ccc;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+#signup-form input[type='text']:focus {
+  border-color: rgb(87, 85, 85);
+}
+
+#signup-form button {
+  margin-top: 2rem;
+  float: right;
+  padding: 5px 15px;
+  color: white;
+  background: rgb(230, 61, 61);
+  border: 0 none;
+  cursor: pointer;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  border: thin solid black;
+}

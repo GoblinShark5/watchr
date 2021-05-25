@@ -14,6 +14,7 @@
   "plugins": ["react", "prettier"],
   "rules": {
     "prettier/prettier": ["error", { "singleQuote": true }],
-    "react/jsx-filename-extension": "off"
+    "react/jsx-filename-extension": "off",
+    "import/extensions": "off"
   }
 }

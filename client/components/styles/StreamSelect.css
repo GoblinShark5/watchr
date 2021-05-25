@@ -1,0 +1,13 @@
+#stream-checkbox-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0.3rem double rgb(235, 232, 232);
+  border-radius: 1rem;
+  margin: 2rem 0 0 0;
+  padding: 1rem;
+}
+
+.stream-checkbox {
+  margin: 0 1rem;
+}
