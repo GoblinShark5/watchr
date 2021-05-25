@@ -66,20 +66,6 @@
   margin-right: auto;
   justify-content: space-between;
 }
-.stander-appear {
-opacity: 0;
-}
-.stander-appear .stander-appear-active {
-  opacity: 1;
- transition: opacity 300ms linear;
-}
-.stander2-appear {
-  opacity: 0;
-  }
-  .stander2-appear .stander2-appear-active {
-    opacity: 1;
-   transition: opacity 300ms linear;
-  }
 /* https://www.w3schools.com/cssref/default.asp */
 /* Css White Space property to specify how white space w/in an element is handled https://www.w3schools.com/cssref/pr_text_white-space.asp */
 /* The link for Resizing an element: https://www.w3schools.com/cssref/css3_pr_resiz

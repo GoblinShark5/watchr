@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
 // app.use(express.static(path.join))
 router.get('/homepage', (req, res) => {
   // res.status(200).sendFile(path.resolve(__dirname, '../index.html'));
-  res.status(200).sendFile(path.resolve(__dirname, '../client/components/HomePage.jsx'));
+  res.status(200).sendFile(path.resolve(__dirname, '../index.html'));
 });
 
 router.post('/signup', userController.signup, (req, res) => {
@@ -29,7 +29,7 @@ router.post(
   (req, res) => {
     console.log('SUCCESS');
     console.log(req.cookies.userServices);
-    res.status(200).redirect('/homepage');
+    res.status(200).redirect('/');
   },
 );
 
