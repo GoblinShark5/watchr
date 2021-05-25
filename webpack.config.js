@@ -17,6 +17,8 @@ module.exports = {
       '/api/': 'http://localhost:3000',
       '/signup': 'http://localhost:3000',
       '/login': 'http://localhost:3000',
+      '/search': 'http://localhost:3000',
+      '/homepage': 'http://localhost:3000',
     },
   },
 

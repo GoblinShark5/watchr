@@ -1,7 +1,7 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
-import './styles/MovieInputStyles.css';
+import './styles/MovieInput.css';
 
 class MovieInput extends React.Component {
   constructor(props) {
@@ -20,19 +20,31 @@ class MovieInput extends React.Component {
   }
 
   handleSubmit() {
-    console.log('Movie: ', this.state.movieInput);
+    fetch('/search', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify({
+        search: this.state.movieInput,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => this.props.onResponse(data));
   }
 
   render() {
     return (
-      <div id="">
-        <div id="movie-input-title">Where Can I Stream</div>
-        <input
-          type="text"
-          onChange={this.handleOnMovieChange}
-          value={this.state.movieInput}
-        />
-        <button onClick={this.handleSubmit}>Search</button>
+      <div id="movie-input-container">
+        <div id="movie-input-title">Where to stream</div>
+        <div id="movie-input">
+          <input
+            type="text"
+            onChange={this.handleOnMovieChange}
+            value={this.state.movieInput}
+          />
+          <button onClick={this.handleSubmit}>Search</button>
+        </div>
       </div>
     );
   }

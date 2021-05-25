@@ -9,8 +9,8 @@ class MainContainer extends React.Component {
   render() {
     return (
       <div>
-        <Router>
-          {/* <Switch>
+        {/* <Router>
+          <Switch>
             <Route exact path="/" component={LoginManager} />
             <Route path="/signup" component={SignUpManager} />
             <Route path="/homepage" component={HomePage} />
@@ -18,7 +18,7 @@ class MainContainer extends React.Component {
           <LoginManager />
           <SignUpManager />
           <HomePage />
-        </Router>
+        {/* </Router> */}
       </div>
     );
   }

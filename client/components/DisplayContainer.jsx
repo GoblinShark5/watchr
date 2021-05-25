@@ -4,19 +4,12 @@ import React from 'react';
 import StreamsDisplay from './StreamsDisplay.jsx';
 import './styles/DisplayContainer.css';
 
-class DisplayContainer extends React.Component {
-  render() {
-    return (
-      <div id="display-container">
-        Movie / Streams Display
-        <img
-          src="https://image.tmdb.org/t/p/w342/1qELdgcbbDjlpDDRwdYTl2MzuVu.jpg"
-          alt="movie"
-        />
-        <StreamsDisplay />
-      </div>
-    );
-  }
-}
+const DisplayContainer = ({ posterUrl, streams }) => (
+  <div id="display-container">
+    <img src={posterUrl} alt="movie" />
+    <span>Streaming On</span>
+    <StreamsDisplay streams={streams} />
+  </div>
+);
 
 export default DisplayContainer;

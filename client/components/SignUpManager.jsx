@@ -167,17 +167,17 @@ const SignUpManager = () => {
 
   // Handle input change, receives e argument if passed in as the
   // callback to onChange
-  const handleOnChangeUser = (e) => {
+  const handleUserChange = (e) => {
     // Set ONLY the "newUser" state by passing in an object containing
     // "newUser" as a property with the corresponding, updated value
     setNewUser(e.target.value);
   };
 
-  const handleOnChangePassword = (e) => {
+  const handlePasswordChange = (e) => {
     setNewPassword(e.target.value);
   };
 
-  const handleOnChangeEmail = (e) => {
+  const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
 
@@ -193,18 +193,18 @@ const SignUpManager = () => {
         <span id="signup-title">Create Account</span>
         <div id="signup-email">
           Email:{' '}
-          <input name="email" type="email" onChange={handleOnChangeEmail} value={email} />
+          <input name="email" type="email" onChange={handleEmailChange} value={email} />
         </div>
         <div id="signup-username">
           Username:{' '}
-          <input name="username" type="text" onChange={handleOnChangeUser} value={newUser} />
+          <input name="username" type="text" onChange={handleUserChange} value={newUser} />
         </div>
         <div id="signup-password">
           Password:{' '}
           <input
             name="password"
             type="password"
-            onChange={handleOnChangePassword}
+            onChange={handlePasswordChange}
             value={newPassword}
           />
         </div>
