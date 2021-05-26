@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 const axios = require('axios');
 const db = require('../models/userModels');
+const config = require('../../api-key.json');
 
 const userController = {};
 
@@ -93,7 +94,7 @@ userController.searchServices = (req, res, next) => {
     url: 'https://streaming-availability.p.rapidapi.com/get/basic',
     params: { country: 'us', imdb_id: `${res.locals.imdb}` },
     headers: {
-      'x-rapidapi-key': 'e0d178da4amsh91f0fb94afc02adp192ddbjsn3dcf07dc4de5',
+      'x-rapidapi-key': config.API_KEY,
       'x-rapidapi-host': 'streaming-availability.p.rapidapi.com',
     },
   };
@@ -131,7 +132,7 @@ userController.getIMDB = (req, res, next) => {
     url: 'https://movie-database-imdb-alternative.p.rapidapi.com/',
     params: { s: `${req.body.search}`, page: '1', type: 'movie', r: 'json' },
     headers: {
-      'x-rapidapi-key': 'e0d178da4amsh91f0fb94afc02adp192ddbjsn3dcf07dc4de5',
+      'x-rapidapi-key': config.API_KEY,
       'x-rapidapi-host': 'movie-database-imdb-alternative.p.rapidapi.com',
     },
   };
