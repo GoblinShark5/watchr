@@ -1,9 +1,10 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
 // import { Redirect } from 'react-router-dom';
 import './styles/LoginManager.css';
-//transition from class to function
+// transition from class to function
 const LoginManager = () => {
   console.log(
     '%cLogin Initiated!',
@@ -12,28 +13,35 @@ const LoginManager = () => {
   return (
     <div id="login-container">
       <form method="POST" action="/login" className="Login-Manager">
-          Username:
-          <input
-            name="username"
-            className="user"
-            type="text"
-            // onChange={this.UserLoginHandler}
-            // value={this.state.username}
-          />
-    Password:
-          <input
-            name="password"
-            className="Password"
-            type="password"
-            // onChange={this.PasswordLoginHandler}
-            // value={this.state.password}
-          />
-          <br /> <br />
-          <button type="submit" className="Loginbutton">
-            Log In
-          </button>
-        </form>
+        Username:
+        <input
+          name="username"
+          className="user"
+          type="text"
+          // onChange={this.UserLoginHandler}
+          // value={this.state.username}
+        />
+        Password:
+        <input
+          name="password"
+          className="Password"
+          type="password"
+          // onChange={this.PasswordLoginHandler}
+          // value={this.state.password}
+        />
         <br /> <br />
+        <button type="submit" className="Loginbutton">
+          Log In
+        </button>
+      </form>
+      <br /> <br />
+    </div>
+  );
+};
+
+export default LoginManager;
+
+/*
         <img
           className="imagine"
           src="https://i.ytimg.com/vi/xBasQG_6p40/maxresdefault.jpg"
@@ -50,8 +58,4 @@ const LoginManager = () => {
             src="https://upload.wikimedia.org/wikipedia/en/6/6d/Evil_Dead_II_poster.jpg"
             alt="Evil Dead II"
            />
-      </div>
-    );
-};
-
-export default LoginManager;
+*/

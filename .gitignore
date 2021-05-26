@@ -21,3 +21,6 @@ coverage/
 
 # vscode config
 .vscode/
+
+# variables
+variables.js
