@@ -34,12 +34,6 @@ module.exports = {
           },
         },
       },
-      // {
-      // 	test: /\.css?/, // --> /\.s[ac]ss$/i
-      //  exclude: /(node_modules)/,
-      // 	use: ['style-loader', 'css-loader'],
-      // 	},
-      //
       {
         test: /.(css|scss)$/,
         exclude: /node_modules/,
