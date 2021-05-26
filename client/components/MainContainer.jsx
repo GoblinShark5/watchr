@@ -9,16 +9,11 @@ class MainContainer extends React.Component {
   render() {
     return (
       <div>
-        {/* <Router>
-          <Switch>
-            <Route exact path="/" component={LoginManager} />
-            <Route path="/signup" component={SignUpManager} />
-            <Route path="/homepage" component={HomePage} />
-          </Switch> */}
-          <LoginManager />
-          <SignUpManager />
-          <HomePage />
-        {/* </Router> */}
+        <Switch>
+          <Route exact path="/" component={LoginManager} />
+          <Route path="/signup" component={SignUpManager} />
+          <Route path="/homepage" component={HomePage} />
+        </Switch>
       </div>
     );
   }
