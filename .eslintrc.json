@@ -16,5 +16,12 @@
     "prettier/prettier": ["error", { "singleQuote": true }],
     "react/jsx-filename-extension": "off",
     "import/extensions": "off"
-  }
+  },
+  "prettier/prettier": [
+    "error",
+    {
+      "endOfLine": "auto"
+    },
+    { "usePrettierrc": true }
+  ]
 }

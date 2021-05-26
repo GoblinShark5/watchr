@@ -28,7 +28,7 @@ router.post(
   userController.setServices,
   (req, res) => {
     console.log('SUCCESS');
-    console.log(req.cookies.userServices);
+    console.log('cookie', req.cookies.userServices);
     res.status(200).redirect('/');
   },
 );
@@ -39,8 +39,8 @@ router.post(
   userController.searchServices,
   (req, res) => {
     console.log('Search success!');
-    console.log('Search results: ', res.locals.kyung);
-    res.status(200).json(res.locals.kyung);
+    console.log('Search results: ', res.locals.available);
+    res.status(200).json(res.locals.available);
   },
 );
 
