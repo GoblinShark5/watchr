@@ -14,11 +14,7 @@ module.exports = {
     publicPath: '/build',
     port: 8080,
     proxy: {
-      '/api/': 'http://localhost:3000',
-      '/signup': 'http://localhost:3000',
-      '/login': 'http://localhost:3000',
-      '/search': 'http://localhost:3000',
-      '/homepage': 'http://localhost:3000',
+      '/api': 'http://localhost:3000',
     },
   },
 
@@ -34,12 +30,6 @@ module.exports = {
           },
         },
       },
-      // {
-      // 	test: /\.css?/, // --> /\.s[ac]ss$/i
-      //  exclude: /(node_modules)/,
-      // 	use: ['style-loader', 'css-loader'],
-      // 	},
-      //
       {
         test: /.(css|scss)$/,
         exclude: /node_modules/,
