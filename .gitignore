@@ -21,3 +21,6 @@ coverage/
 
 # vscode config
 .vscode/
+
+# api key
+api-key.json
