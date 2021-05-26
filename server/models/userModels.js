@@ -3,7 +3,7 @@ const { Pool } = require('pg');
 // const PG_URI =
 //   'postgres://avlofxwe:slIgslC7C_3bZouSFtWb17CEjmDv-yEC@otto.db.elephantsql.com/avlofxwe';
 const PG_URI =
-  'postgres://ajocojat:Xhe0L8OJP5qmAAaktHhXaz2UFiujau2a@kashin.db.elephantsql.com/ajocojat';
+  'postgres://ssigjlks:Zb12dIhHTONQtoKMuTSyXWc2VlVcE6zm@kashin.db.elephantsql.com/ssigjlks';
 
 // create a new pool here using the connection string above
 const pool = new Pool({
