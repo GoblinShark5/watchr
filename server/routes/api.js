@@ -8,7 +8,7 @@ const router = express.Router();
 router.get('/', (req, res) => {
   // console.log(res.locals.netflix.results.length);
   // console.log(res.locals.netflix);
-  console.log("DIRNAME: ", __dirname);
+  console.log('DIRNAME: ', __dirname);
   res.status(200).sendFile(path.resolve(__dirname, '../index.html'));
   // res.status(200).redirect('/homepage');
 });
