@@ -127,6 +127,25 @@ const SignUpManager = () => {
     netflix: false,
   });
 
+  /*
+  this.state = {
+    newUser: '',
+    newPassword: ''
+    email: '',
+    streams: {
+      amazon: false,
+      hulu: false,
+      netflix: false,
+    }
+  }
+
+  this.setState({
+    ...
+    newUser: 'asdf'
+  })
+  setNewUser('asdf');
+  */
+
   const handleStreamChange = (e) => {
     setStreams((prev) => {
       const { name } = e.target;
@@ -159,7 +178,7 @@ const SignUpManager = () => {
     })
       .then((res) => {
         console.log('RES: ', res);
-        return res.json()
+        return res.json();
       })
       .then((data) => console.log('Data received: ', data))
       .catch((err) => console.log('Err received in fetch: ', err));
@@ -193,11 +212,21 @@ const SignUpManager = () => {
         <span id="signup-title">Create Account</span>
         <div id="signup-email">
           Email:{' '}
-          <input name="email" type="email" onChange={handleEmailChange} value={email} />
+          <input
+            name="email"
+            type="email"
+            onChange={handleEmailChange}
+            value={email}
+          />
         </div>
         <div id="signup-username">
           Username:{' '}
-          <input name="username" type="text" onChange={handleUserChange} value={newUser} />
+          <input
+            name="username"
+            type="text"
+            onChange={handleUserChange}
+            value={newUser}
+          />
         </div>
         <div id="signup-password">
           Password:{' '}
@@ -212,7 +241,10 @@ const SignUpManager = () => {
           streamPrefs={[streamsInput]}
           onStreamChange={handleStreamChange}
         />
-        <button type="submit" onClick={handleSubmitClick}> Sign Up </button>
+        <button type="submit" onClick={handleSubmitClick}>
+          {' '}
+          Sign Up{' '}
+        </button>
       </form>
     </div>
   );

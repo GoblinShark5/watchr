@@ -12,7 +12,11 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// app.use('/', path.resolve(__dirname, '../index.html'));
+// app.use(express.static('build'));
+
+app.get('/', (req, res) => {
+  res.status(200).sendFile(path.resolve(__dirname, '../index.html'));
+});
 
 app.use('/', apiRouter);
 
@@ -30,5 +34,3 @@ app.listen(3000, () => {
 });
 
 module.exports = app;
-
-      
