@@ -1,10 +1,11 @@
 /* eslint-disable no-console */
 const axios = require('axios');
 const db = require('../models/userModels');
+const variables = require('../../variables.js');
 
 const userController = {};
 
-userController.signup = (req, res, next) => {
+userController.signup = (req, res, next) => { // You will need to defend against SQL injection attacks here
   console.log('Signup body', req.body);
   console.log('Signup query', req.query);
   const query = `
@@ -25,7 +26,23 @@ userController.signup = (req, res, next) => {
     });
 };
 
-userController.login = (req, res, next) => {
+// EXAMPLE FROM OUR GREAT TIME TOGETHER, JUSTIN !!!!
+// starWarsController.getHomeworld = (req, res, next) => {
+//   // write code here
+//   const { id } = req.query;
+//   const sqlQuery = 'SELECT * FROM planets WHERE _id = $1;';
+  
+//   // writing some code here
+//   db
+//     .query(sqlQuery, [id])
+//     .then(dbRes => {
+//       res.locals.homeworld = dbRes.rows[0];
+//       return next();
+//     })
+//     .catch(err => next({ err }));
+// };
+
+userController.login = (req, res, next) => { // You will need to defend against SQL injection attacks here
   const loginQuery = `
   SELECT username, password
   FROM users
@@ -49,7 +66,7 @@ userController.login = (req, res, next) => {
   });
 };
 
-userController.setServices = (req, res, next) => {
+userController.setServices = (req, res, next) => { // You will need to defend against SQL injection attacks here
   const query = `
   SELECT netflix, hulu, amazon
   FROM users
@@ -93,7 +110,7 @@ userController.searchServices = (req, res, next) => {
     url: 'https://streaming-availability.p.rapidapi.com/get/basic',
     params: { country: 'us', imdb_id: `${res.locals.imdb}` },
     headers: {
-      'x-rapidapi-key': 'e0d178da4amsh91f0fb94afc02adp192ddbjsn3dcf07dc4de5',
+      'x-rapidapi-key': variables.imdbAPI,
       'x-rapidapi-host': 'streaming-availability.p.rapidapi.com',
     },
   };
