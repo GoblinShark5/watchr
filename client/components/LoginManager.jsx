@@ -11,25 +11,30 @@ const LoginManager = () => {
     'font-weight: bold; font-size: 53px;color: red; text-shadow: 3px 3px 0 rgb(217,31,38), 6px 6px 0 rgb(226,91,14), 9px 9px 0 rgb(245,221,8) , 12px 12px 0 rgb(5,148,68) , 15px 15px 0 rgb(2,135,206) , 18px 18px 0 rgb(4,77,145) , 21px 21px 0 rgb(42,21,113)',
   );
   return (
-    <div id="login-container">
+    <div id="login-container" className="loginManager">
       <form method="POST" action="/login" className="Login-Manager">
-        Username:
-        <input
-          name="username"
-          className="user"
-          type="text"
+        <span id="signin-title">Sign in</span>
+        <div id="User-Name">
+          Username:
+          <input
+            name="username"
+            className="user"
+            type="text"
           // onChange={this.UserLoginHandler}
           // value={this.state.username}
-        />
-        Password:
-        <input
-          name="password"
-          className="Password"
-          type="password"
+          />
+        </div>
+        <div id="Pass-word">
+          Password:
+          <input
+            name="password"
+            className="Password"
+            type="password"
           // onChange={this.PasswordLoginHandler}
           // value={this.state.password}
-        />
-        <br /> <br />
+          />
+        </div>
+
         <button type="submit" className="Loginbutton">
           Log In
         </button>
