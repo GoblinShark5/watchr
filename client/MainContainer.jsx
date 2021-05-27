@@ -1,12 +1,12 @@
 /* eslint-disable react/prefer-stateless-function */
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import LoginManager from './components/LoginManager.jsx';
+
 import HomePage from './components/HomePage.jsx';
 
 import FavoritesView from './views/FavoritesView.jsx';
 import HomeView from './views/HomeView.jsx';
-import LogInView from './views/LogInView.jsx';
+import LoginView from './views/LoginView.jsx';
 import SignUpView from './views/SignUpView.jsx';
 
 import './components/styles/MainContainer.css';
@@ -22,10 +22,9 @@ class MainContainer extends React.Component {
       loggedIn: false
     };
     this.views = {
-      'login': <LoginManager />,
+      'login': <LoginView />,
       'signup': <SignUpView />,
       'home': <HomePage />,
-      'loginview': <LogInView />,
       'favorites': <FavoritesView />
     };
   }

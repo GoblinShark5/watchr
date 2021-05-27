@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/destructuring-assignment */
 import React, { useState } from 'react';
@@ -30,7 +31,7 @@ const SignUpManager = () => {
     e.preventDefault();
     console.log('Clicked submit on SignUp');
 
-    fetch('/signup', {
+    fetch('http://localhost:3000/user/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -1,92 +1,80 @@
+/* eslint-disable linebreak-style */
 /* eslint-disable no-console */
 const axios = require('axios');
 const db = require('../models/userModels');
-const variables = require('../../variables.js');
+const variables = require('../../variables');
 
 const userController = {};
 
-userController.signup = (req, res, next) => { // You will need to defend against SQL injection attacks here
-  console.log('Signup body', req.body);
-  console.log('Signup query', req.query);
+// You will need to defend against SQL injection attacks here
+userController.signup = (req, res, next) => {
+  const {
+    newUser, newPassword, email, netflix, amazon, hulu,
+  } = req.body;
+  const values = [newUser, email, newPassword, netflix, hulu, amazon];
   const query = `
-  INSERT INTO users(username, email, password, netflix, hulu, amazon)
-  VALUES ('${req.body.newUser}', '${req.body.email}', '${
-    req.body.newPassword
-  }' , 
-  '${JSON.parse(req.body.netflix)}', '${JSON.parse(req.body.hulu)}',
-  '${JSON.parse(req.body.amazon)}')
+  INSERT INTO watchr.users(username, email, password, netflix, hulu, amazon)
+  VALUES ($1, $2, $3, $4, $5, $6) RETURNING username, netflix, hulu, amazon;
   `;
 
-  db.query(query)
-    .then(() => {
-      next();
+  db.query(query, values)
+    .then(response => {
+      res.locals.newUser = response.rows[0];
+      return next();
     })
     .catch((err) => {
-      if (err) return next(err);
+      console.log('signup query error');
+      console.log(err);
+      return next({ err });
     });
 };
 
-// EXAMPLE FROM OUR GREAT TIME TOGETHER, JUSTIN !!!!
-// starWarsController.getHomeworld = (req, res, next) => {
-//   // write code here
-//   const { id } = req.query;
-//   const sqlQuery = 'SELECT * FROM planets WHERE _id = $1;';
-  
-//   // writing some code here
-//   db
-//     .query(sqlQuery, [id])
-//     .then(dbRes => {
-//       res.locals.homeworld = dbRes.rows[0];
-//       return next();
-//     })
-//     .catch(err => next({ err }));
-// };
+userController.login = (req, res, next) => {
+  const { username, password } = req.query;
+  const values = [username, password];
 
-userController.login = (req, res, next) => { // You will need to defend against SQL injection attacks here
   const loginQuery = `
   SELECT username, password
-  FROM users
-  WHERE username = '${req.body.username}' AND password = '${req.body.password}'
+  FROM watchr.users
+  WHERE username = $1 AND password = $2;
   `;
 
-  console.log('Made it to the login controller');
-  db.query(loginQuery, (err, data) => {
-    if (err) {
-      console.log(`Database request error! ${err}`);
-      return next(err);
-    }
-    if (data.rows[0]) {
-      next();
-    } else {
-      res.redirect('/login');
-    }
-    // console.log(`Successfully got data from database ${data.rows}`);
-    // res.locals.user = data.rows;
-    // return next();
-  });
+  db.query(loginQuery, values)
+    .then(data => {
+      res.locals.user = data.rows[0];
+      return next();
+    })
+    .catch(err => next({ err }));
 };
 
-userController.setServices = (req, res, next) => { // You will need to defend against SQL injection attacks here
+userController.setServicesCookie = (req, res, next) => { 
+  const { username } = req.query;
+  console.log('username', username);
+  const values = [username];
+  
   const query = `
   SELECT netflix, hulu, amazon
-  FROM users
-  WHERE username = '${req.body.username}'
+  FROM watchr.users
+  WHERE username = $1;
   `;
 
   console.log('made it to the cookie controller');
 
-  db.query(query).then((data) => {
-    // console.log(typeof data.rows[0].netflix);
-    console.log(data.rows[0]);
-    data.rows[0].prime = data.rows[0].amazon;
-    delete data.rows[0].amazon;
-    res.cookie('userServices', JSON.stringify(data.rows[0]));
-    next();
-  });
-};
+  db.query(query, values)
+    .then((data) => {
+      // take query response and add info to cookies
+      data.rows[0].prime = data.rows[0].amazon;
+      delete data.rows[0].amazon;
+      res.cookie('userServices', JSON.stringify(data.rows[0]));
+      return next();
+    })
+    .catch(err => next({ err }));
+  };
 
 userController.searchServices = (req, res, next) => {
-  // check the properties in the cookie to check which services the user has, save that in a variable, array of strings if true
+  // check the properties in the cookie to check which services the user has,
+  // save that in a variable,
+  // array of strings if true
   console.log('Search query: ', req.body.search);
   const array = [];
   const userServices = JSON.parse(req.cookies.userServices);
@@ -148,7 +136,7 @@ userController.getIMDB = (req, res, next) => {
     url: 'https://movie-database-imdb-alternative.p.rapidapi.com/',
     params: { s: `${req.body.search}`, page: '1', type: 'movie', r: 'json' },
     headers: {
-      'x-rapidapi-key': 'e0d178da4amsh91f0fb94afc02adp192ddbjsn3dcf07dc4de5',
+      'x-rapidapi-key': variables.imdbAPI,
       'x-rapidapi-host': 'movie-database-imdb-alternative.p.rapidapi.com',
     },
   };

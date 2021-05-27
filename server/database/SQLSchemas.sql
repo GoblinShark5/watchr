@@ -1,66 +1,65 @@
-// place to work on schema commands to create db tables
+-- place to work on schema commands to create db tables
 
 
-CREATE SCHEMA "watchrschema";
+CREATE SCHEMA "watchr";
 
-CREATE TABLE watchrschema.users (
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+CREATE TABLE watchr.users (
   "id" SMALLSERIAL PRIMARY KEY,
   "username" varchar NOT NULL,
   "email" varchar NOT NULL,
   "password" varchar NOT NULL,
   "netflix" boolean NOT NULL,
   "hulu" boolean NOT NULL,
-  "amazon" boolean NOT NULL,
+  "amazon" boolean NOT NULL
+) WITH (
+  OIDS=FALSE
 );
 
-CREATE TABLE watchrschema.amazon (
+CREATE TABLE watchr.amazon (
   "id" SMALLSERIAL PRIMARY KEY,
   "movieName" varchar NOT NULL,
   "img" varchar NOT NULL,
-  "streamingInfo" varchar NOT NULL,
+  "streamingInfo" varchar NOT NULL
+) WITH (
+  OIDS=FALSE
 );
 
-CREATE TABLE watchrschema.hulu (
+CREATE TABLE watchr.hulu (
   "id" SMALLSERIAL PRIMARY KEY,
   "movieName" varchar NOT NULL,
   "img" varchar NOT NULL,
-  "streamingInfo" varchar NOT NULL,
+  "streamingInfo" varchar NOT NULL
+) WITH (
+  OIDS=FALSE
 );
 
-CREATE TABLE watchrschema.netflix (
+CREATE TABLE watchr.netflix (
   "id" SMALLSERIAL PRIMARY KEY,
   "movieName" varchar NOT NULL,
   "img" varchar NOT NULL,
-  "streamingInfo" varchar NOT NULL,
+  "streamingInfo" varchar NOT NULL
+) WITH (
+  OIDS=FALSE
 );
 
--- CREATE TABLE watchrschema.users (
---   "username" varchar PRIMARY KEY,
---   "email" varchar NOT NULL,
---   "password" varchar NOT NULL,
---   "amazon" boolean NOT NULL DEFAULT false,
---   "netflix" boolean NOT NULL DEFAULT false,
---   "hulu" boolean NOT NULL DEFAULT false
+-- CREATE TABLE watchr.usersmovies (
+--   "_id" serial NOT NULL
 -- );
 
--- CREATE TABLE watchrschema.usersmovies (
---   "username" varchar,
---   "moviename" varchar,
---   PRIMARY KEY ("username", "moviename")
--- );
+-- ALTER TABLE watchr.usersmovies ADD FOREIGN KEY ("username") REFERENCES watchrschema.users ("username");
 
--- CREATE TABLE watchrschema.movies (
---   "moviename" varchar PRIMARY KEY,
---   "description" varchar NOT NULL,
---   "amazon" boolean NOT NULL DEFAULT false,
---   "netflix" boolean NOT NULL DEFAULT false,
---   "hulu" boolean NOT NULL DEFAULT false
--- );
-
--- ALTER TABLE watchrschema.usersmovies ADD FOREIGN KEY ("username") REFERENCES watchrschema.users ("username");
-
--- ALTER TABLE watchrschema.usersmovies ADD FOREIGN KEY ("moviename") REFERENCES watchrschema.movies ("moviename");
-
+-- ALTER TABLE watchr.usersmovies ADD FOREIGN KEY ("moviename") REFERENCES watchrschema.movies ("moviename");
 
 -- SET search_path TO watchrschema,public;
 
