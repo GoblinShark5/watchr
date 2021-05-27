@@ -4,7 +4,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(5, 20, 70);
+  background-color: navy;
 }
 
 #signup-title {
@@ -16,12 +16,13 @@
 }
 
 #signup-form {
-  border: .3rem groove rgb(255, 255, 255);
+  border: 3px white;
   border-radius: 1rem;
   width: 18%;
   padding: 2rem;
   padding-bottom: 1rem;
   background-color: rgb(158, 199, 253);
+  box-shadow: 5px 5px 10px gray;
 }
 
 #signup-email,
@@ -58,5 +59,6 @@
   cursor: pointer;
   -webkit-border-radius: 5px;
   border-radius: 5px;
-  border: thin solid black;
+  border: 1px solid black);
+  box-shadow: 5px 5px 10px gray;
 }
