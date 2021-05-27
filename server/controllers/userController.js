@@ -26,17 +26,13 @@ userController.signup = (req, res, next) => {
 
   const query = `
   INSERT INTO watchst.users(username, email, password, netflix, hulu, amazon)
-  VALUES ('${req.body.username}', '${req.body.email}', '${
-    res.locals.bcrypt
-  }' , 
+  VALUES ('${req.body.username}', '${req.body.email}', '${res.locals.bcrypt}', 
   '${JSON.parse(req.body.netflix)}', '${JSON.parse(req.body.hulu)}',
   '${JSON.parse(req.body.amazon)}')
   `;
 
   db.query(query)
-    .then(() => {
-      next();
-    })
+    .then(() => next())
     .catch((err) => {
       if (err) return next(err);
     });
@@ -59,7 +55,6 @@ userController.login = (req, res, next) => {
         }
         if (result) {
           console.log('bcrypt compare', result);
-          res.locals.correctPW = result;
           return next();
         }
         else return next('Incorrect username/password');
@@ -73,15 +68,18 @@ userController.login = (req, res, next) => {
 };
 
 userController.setServices = (req, res, next) => {
+
+  const {username} = req.body;
+
   const query = `
   SELECT _id, netflix, hulu, amazon
   FROM watchst.users
-  WHERE username = '${req.body.username}'
+  WHERE username = $1
   `;
 
   console.log('made it to the cookie controller');
 
-  db.query(query)
+  db.query(query, [username])
     .then((data) => {
       // console.log(typeof data.rows[0].netflix);
       console.log('data.rows', data.rows[0]);
@@ -89,7 +87,7 @@ userController.setServices = (req, res, next) => {
       delete data.rows[0].amazon;
       res.cookie('userServices', JSON.stringify(data.rows[0]));
       res.locals.cookie = data.rows[0];
-      next();
+      return next();
     })
     .catch((err) => {
       return next(err);
@@ -121,7 +119,7 @@ userController.searchServices = (req, res, next) => {
     url: 'https://streaming-availability.p.rapidapi.com/get/basic',
     params: { country: 'us', imdb_id: `${res.locals.imdb}` },
     headers: {
-      'x-rapidapi-key': config.API_KEY,
+      'x-rapidapi-key': 'e0d178da4amsh91f0fb94afc02adp192ddbjsn3dcf07dc4de5',
       'x-rapidapi-host': 'streaming-availability.p.rapidapi.com',
     },
   };
@@ -159,7 +157,7 @@ userController.getIMDB = (req, res, next) => {
     url: 'https://movie-database-imdb-alternative.p.rapidapi.com/',
     params: { s: `${req.body.search}`, page: '1', type: 'movie', r: 'json' },
     headers: {
-      'x-rapidapi-key': config.API_KEY,
+      'x-rapidapi-key': '324525e47dmshe4ac5f7930cff96p17f69cjsnd84de699ff4e',
       'x-rapidapi-host': 'movie-database-imdb-alternative.p.rapidapi.com',
     },
   };

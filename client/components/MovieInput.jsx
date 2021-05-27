@@ -6,13 +6,13 @@ import { Link, useHistory } from 'react-router-dom';
 const MovieInput = (props) => {
 
   const [movieInput, setMovieInput] = useState('');
-  let history = useHistory();
 
   function handleOnMovieChange(e) {
     setMovieInput(e.target.value);
   }
 
-  function handleSubmit() {
+  function handleSubmit(e) {
+    e.preventDefault();
     fetch('/api/search', {
       method: 'POST',
       headers: {
@@ -24,7 +24,6 @@ const MovieInput = (props) => {
     })
       .then((res) => res.json())
       .then((data) => props.onResponse(data))
-      .then(() => history.push('/searchresults'));
   }
 
   return (
@@ -37,7 +36,6 @@ const MovieInput = (props) => {
           value={movieInput}
         />
         <button type="submit">Search</button>
-        <Link to="/searchresults"></Link>
       </form>
     </div>
   );

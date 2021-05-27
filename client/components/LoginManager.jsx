@@ -13,13 +13,14 @@ const LoginManager = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loginFailed, setLoginFailed] = useState('');
+
 
   let history = useHistory();
 
   useEffect( () => {
     if (isLoggedIn) history.push('/homepage');
-  }
-  )
+  })
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
@@ -49,7 +50,7 @@ const LoginManager = () => {
         console.log(data.loggedIn)
         setIsLoggedIn(data)
       })
-      .catch((err) => console.log('Err received in fetch: ', err));
+      .catch((err) => setLoginFailed('Incorrect Username/Password'));
   };
 
   return (
@@ -60,6 +61,7 @@ const LoginManager = () => {
         Password:
         <input name="password" value={password} className="password" type="password" onChange={handlePasswordChange}/>
         <br /> <br />
+        <p id='loginFailed'>{loginFailed}</p>
         <button type="submit" className="Loginbutton">
           Log In
         </button>

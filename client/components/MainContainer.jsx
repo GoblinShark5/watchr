@@ -14,7 +14,6 @@ const MainContainer = () => {
         <Route exact path="/" component={LoginManager} />
         <Route path="/signup" component={SignUpManager} />
         <Route path="/homepage" component={HomePage} />
-        <Route path="/searchresults" component={DisplayContainer} />
       </Switch>
     </div>
   );

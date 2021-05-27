@@ -12,7 +12,6 @@ const HomePage = () => {
     data.amazon ? setAmazon(true) : setAmazon(false);
     data.hulu ? setHulu(true) : setHulu(false);
     data.netflix ? setNetflix(true) : setNetflix(false);
-
     setPosterUrl(data.poster);
   };
 

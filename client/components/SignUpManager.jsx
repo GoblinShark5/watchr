@@ -21,25 +21,6 @@ const SignUpManager = () => {
     if (isLoggedIn) history.push('/homepage');
   })
 
-  /*
-  this.state = {
-    newUser: '',
-    newPassword: ''
-    email: '',
-    streams: {
-      amazon: false,
-      hulu: false,
-      netflix: false,
-    }
-  }
-
-  this.setState({
-    ...
-    newUser: 'asdf'
-  })
-  setNewUser('asdf');
-  */
-
   const handleStreamChange = (e) => {
     setStreams((prev) => {
       const { name } = e.target;
@@ -135,7 +116,7 @@ const SignUpManager = () => {
           />
         </div>
         <StreamSelect
-          streamPrefs={[streamsInput]}
+          streamPrefs={streamsInput}
           onStreamChange={handleStreamChange}
         />
         <button type="submit" onClick={handleSubmitClick}>
