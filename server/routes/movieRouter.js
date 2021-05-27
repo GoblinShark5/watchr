@@ -2,18 +2,18 @@
 const express = require('express');
 const path = require('path');
 const dbController = require('../controllers/dbController');
-const userController = require('../controllers/userController');
+const movieController = require('../controllers/movieController');
 
 const router = express.Router();
 
-// refactor res.locals.kyung with a more descriptive name
-router.post(
+// search for a movie
+router.get(
   '/search',
-  userController.getIMDB,
-  userController.searchServices,
+  movieController.getIMDB,
+  movieController.getServices,
   (req, res) => {
-    console.log('Search results: ', res.locals.kyung);
-    res.status(200).json(res.locals.kyung);
+    console.log('Search results: ', res.locals.movie);
+    res.status(200).json(res.locals.movie);
   },
 );
 
