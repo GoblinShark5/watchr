@@ -7,14 +7,14 @@ const userController = require('../controllers/userController');
 const router = express.Router();
 
 // send back user data
-router.post('/',
+router.post('/signup',
   userController.signup,
   (req, res) => {
-    return res.status(200).send({ user: res.locals.newUser });
+    res.status(200).send({ user: res.locals.newUser })
   });
 
 // send back user data
-router.get(
+router.post(
   '/',
   userController.login,
   userController.setServicesCookie,

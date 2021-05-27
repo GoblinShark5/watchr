@@ -5,7 +5,6 @@ const path = require('path');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
-
 // const router = express.Router();
 const app = express();
 app.use(cookieParser());
@@ -19,8 +18,11 @@ const movieRouter = require('./routes/movieRouter');
 app.use('/user', userRouter);
 app.use('/movie', movieRouter);
 
-
 // send HTML
+app.get('/test', (req, res) => {
+  res.status(200).send({ message: 'Test Response!' });
+});
+
 app.get('/', (req, res) => {
   res.status(200).sendFile(path.resolve(__dirname, '../index.html'));
 });
@@ -33,7 +35,7 @@ app.use((err, req, res, next) => {
   const defaultErr = {
     log: 'An unknown middleware error occurred',
     message: 'A server error occurred',
-    status: 500
+    status: 500,
   };
   const errObj = { ...defaultErr, ...err };
   console.log(errObj.log);

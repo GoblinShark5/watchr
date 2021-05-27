@@ -17,7 +17,13 @@ const LoginView = () => {
     );
     // fetch GET request from server
     // check our username and password against the login credentials
-    fetch(`http://localhost:3000/user/?username=${username}&password=${password}`)
+    fetch(`http://localhost:3000/user/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, password }),
+    })
       .then(data => data.json())
       .then(data => {
         console.log(data);
@@ -29,7 +35,7 @@ const LoginView = () => {
   };
 
   return (
-    <div id="login-container" className="loginManager">
+    <div id="login-container" className="loginManager" className="ViewButton">
       <AuthTextView handleClick={handleClick} error={error} />
     </div>
   );
