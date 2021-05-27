@@ -1,12 +1,13 @@
+/* eslint-disable linebreak-style */
 const axios = require('axios');
-const pgp = require('pg-promise')({
-  capSQL: true,
-});
 const db = require('../models/userModels');
+const variables = require('../../variables');
 
-const pgpdb = pgp(
-  'postgres://ajocojat:Xhe0L8OJP5qmAAaktHhXaz2UFiujau2a@kashin.db.elephantsql.com/ajocojat',
-);
+// shouldn't be necessary
+// const pgp = require('pg-promise')({
+//   capSQL: true,
+// });
+// const pgpdb = pgp(variables.SQLstring);
 
 const dbController = {};
 
@@ -30,7 +31,7 @@ dbController.insertNetflix = async (req, res, next) => {
       // language: 'en',
     },
     headers: {
-      'x-rapidapi-key': 'e0d178da4amsh91f0fb94afc02adp192ddbjsn3dcf07dc4de5',
+      'x-rapidapi-key': variables.IMDBstring,
       'x-rapidapi-host': 'streaming-availability.p.rapidapi.com',
     },
   };
@@ -38,12 +39,11 @@ dbController.insertNetflix = async (req, res, next) => {
   axios
     .request(options)
     .then((response) => {
-      console.log('penis');
       res.locals.netflix = response.data;
       next();
     })
     .catch((error) => {
-      console.error(error);
+      next(error);
     });
 
   // const options = {

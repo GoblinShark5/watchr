@@ -1,28 +1,30 @@
+/* eslint-disable linebreak-style */
 /* eslint-disable no-console */
 const axios = require('axios');
 const db = require('../models/userModels');
-const variables = require('../../variables.js');
+const variables = require('../../variables');
 
 const userController = {};
 
-userController.signup = (req, res, next) => { // You will need to defend against SQL injection attacks here
+// You will need to defend against SQL injection attacks here
+userController.signup = (req, res, next) => {
   console.log('Signup body', req.body);
-  console.log('Signup query', req.query);
+  const { newUser, newPassword, email, netflix, amazon, hulu } = req.body;
+  const values = [newUser, email, newPassword, netflix, hulu, amazon];
   const query = `
-  INSERT INTO users(username, email, password, netflix, hulu, amazon)
-  VALUES ('${req.body.newUser}', '${req.body.email}', '${
-    req.body.newPassword
-  }' , 
-  '${JSON.parse(req.body.netflix)}', '${JSON.parse(req.body.hulu)}',
-  '${JSON.parse(req.body.amazon)}')
+  INSERT INTO watchr.users(username, email, password, netflix, hulu, amazon)
+  VALUES ($1, $2, $3, $4, $5, $6) RETURNING username, netflix, hulu, amazon;
   `;
 
-  db.query(query)
-    .then(() => {
-      next();
+  db.query(query, values)
+    .then(response => {
+      console.log('signup response', response);
+      return next();
     })
     .catch((err) => {
-      if (err) return next(err);
+      console.log('signup query error');
+      console.log(err);
+      return next({ err });
     });
 };
 
@@ -148,7 +150,7 @@ userController.getIMDB = (req, res, next) => {
     url: 'https://movie-database-imdb-alternative.p.rapidapi.com/',
     params: { s: `${req.body.search}`, page: '1', type: 'movie', r: 'json' },
     headers: {
-      'x-rapidapi-key': 'e0d178da4amsh91f0fb94afc02adp192ddbjsn3dcf07dc4de5',
+      'x-rapidapi-key': variables.imdbAPI,
       'x-rapidapi-host': 'movie-database-imdb-alternative.p.rapidapi.com',
     },
   };

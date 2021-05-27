@@ -11,9 +11,9 @@
 	},
 	"jest": {
 		"verbose": false,
-    "moduleNameMapper": {
-      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
-    }
+		"moduleNameMapper": {
+			"\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
+		}
 	},
 	"repository": {
 		"type": "git",
