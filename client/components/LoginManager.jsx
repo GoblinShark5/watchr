@@ -39,7 +39,7 @@ const LoginManager = () => {
   return (
     <div id="login-container" className="loginManager">
       <div className="Login-Manager">
-        <span id="signin-title">Log In</span>
+        {/* <span id="signin-title">Enter Login Information</span> */}
         <div id="User-Name">
           Username:
           <input

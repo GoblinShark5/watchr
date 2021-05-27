@@ -36,7 +36,7 @@ class MovieInput extends React.Component {
   render() {
     return (
       <div id="movie-input-container">
-        <div id="movie-input-title">Where to stream</div>
+        <div id="movie-input-title">Find A Film</div>
         <div id="movie-input">
           <input
             type="text"

@@ -6,9 +6,9 @@ import './styles/DisplayContainer.css';
 
 const DisplayContainer = ({ posterUrl, streams }) => (
   <div id="display-container">
-    <img src={posterUrl} alt="movie" />
-    <span>Streaming On</span>
+    <span>Available To Stream On:</span>
     <StreamsDisplay streams={streams} />
+    <img id= "movieImg" src={posterUrl} alt="movie" />
   </div>
 );
 

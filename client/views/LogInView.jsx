@@ -35,7 +35,7 @@ const LoginView = () => {
   };
 
   return (
-    <div id="login-container" className="loginManager">
+    <div id="login-container" className="loginManager" className="ViewButton">
       <AuthTextView handleClick={handleClick} error={error} />
     </div>
   );
