@@ -1,17 +1,25 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/destructuring-assignment */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import StreamSelect from './StreamSelect.jsx';
 
 const SignUpManager = () => {
-  const [newUser, setNewUser] = useState('');
-  const [newPassword, setNewPassword] = useState('');
+  const [username, setNewUser] = useState('');
+  const [password, setNewPassword] = useState('');
   const [email, setEmail] = useState('');
   const [streams, setStreams] = useState({
     amazon: false,
     hulu: false,
     netflix: false,
   });
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  let history = useHistory();
+
+  useEffect( () => {
+    if (isLoggedIn) history.push('/homepage');
+  })
 
   /*
   this.state = {
@@ -54,8 +62,8 @@ const SignUpManager = () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        newUser,
-        newPassword,
+        username,
+        password,
         email,
         amazon: streams.amazon,
         hulu: streams.hulu,
@@ -66,7 +74,10 @@ const SignUpManager = () => {
         console.log('RES: ', res);
         return res.json();
       })
-      .then((data) => console.log('Data received: ', data))
+      .then((data) => {
+        console.log('data', data)
+        setIsLoggedIn(data.loggedIn)
+      })
       .catch((err) => console.log('Err received in fetch: ', err));
   };
 
@@ -111,7 +122,7 @@ const SignUpManager = () => {
             name="username"
             type="text"
             onChange={handleUserChange}
-            value={newUser}
+            value={username}
           />
         </div>
         <div id="signup-password">
@@ -120,7 +131,7 @@ const SignUpManager = () => {
             name="password"
             type="password"
             onChange={handlePasswordChange}
-            value={newPassword}
+            value={password}
           />
         </div>
         <StreamSelect
@@ -131,6 +142,7 @@ const SignUpManager = () => {
           {' '}
           Sign Up{' '}
         </button>
+        <Link to="/homepage"></Link>
       </form>
     </div>
   );

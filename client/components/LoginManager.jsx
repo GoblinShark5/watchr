@@ -1,7 +1,7 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/destructuring-assignment */
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 // import { Redirect } from 'react-router-dom';
 // transition from class to function
 const LoginManager = () => {
@@ -12,6 +12,14 @@ const LoginManager = () => {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  let history = useHistory();
+
+  useEffect( () => {
+    if (isLoggedIn) history.push('/homepage');
+  }
+  )
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
@@ -21,7 +29,8 @@ const LoginManager = () => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     fetch('/api/login', {
       method: 'POST',
       headers: {
@@ -36,7 +45,10 @@ const LoginManager = () => {
         console.log('RES: ', res);
         return res.json();
       })
-      .then((data) => console.log('Data received: ', data))
+      .then((data) => {
+        console.log(data.loggedIn)
+        setIsLoggedIn(data)
+      })
       .catch((err) => console.log('Err received in fetch: ', err));
   };
 

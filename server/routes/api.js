@@ -21,9 +21,11 @@ const router = express.Router();
 
 router.post('/signup', 
   userController.bcrypt, 
-  userController.signup, 
+  userController.signup,
+  userController.login,
+  userController.setServices,
   (req, res) => {
-    res.status(200).send('Created User');
+    res.status(200).send({loggedIn: true});
   }
 );
 

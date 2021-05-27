@@ -9,10 +9,10 @@ const saltRounds = 10;
 const userController = {};
 
 userController.bcrypt = (req, res, next) => {
-  const { newPassword } = req.body;
+  const { password } = req.body;
   
   bcrypt.genSalt(saltRounds, (err, salt) => {
-    bcrypt.hash(newPassword, salt, (err, hash) => {
+    bcrypt.hash(password, salt, (err, hash) => {
       res.locals.bcrypt = hash;
       return next();
     })
@@ -26,7 +26,7 @@ userController.signup = (req, res, next) => {
 
   const query = `
   INSERT INTO watchst.users(username, email, password, netflix, hulu, amazon)
-  VALUES ('${req.body.newUser}', '${req.body.email}', '${
+  VALUES ('${req.body.username}', '${req.body.email}', '${
     res.locals.bcrypt
   }' , 
   '${JSON.parse(req.body.netflix)}', '${JSON.parse(req.body.hulu)}',
