@@ -2,7 +2,7 @@ import React from 'react';
 
 const FavoritesView = () => {
   return (
-    <div>
+    <div className="ViewButton">
       FavoritesView
     </div>
   )

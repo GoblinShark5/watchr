@@ -2,7 +2,7 @@ import React from 'react';
 
 const HomeView = () => {
   return (
-    <div>
+    <div className="ViewButton">
       HomeView
     </div>
   )
