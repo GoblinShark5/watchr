@@ -19,7 +19,7 @@ userController.signup = (req, res, next) => {
 
   db.query(query, values)
     .then(response => {
-      res.locals.newUser = response.rows[0];
+      res.locals.newUser = response.rows[0].username;
       return next();
     })
     .catch((err) => {
@@ -30,7 +30,7 @@ userController.signup = (req, res, next) => {
 };
 
 userController.login = (req, res, next) => {
-  const { username, password } = req.query;
+  const { username, password } = req.body;
   const values = [username, password];
 
   const loginQuery = `
@@ -41,14 +41,14 @@ userController.login = (req, res, next) => {
 
   db.query(loginQuery, values)
     .then(data => {
-      res.locals.user = data.rows[0];
+      res.locals.user = data.rows[0].username;
       return next();
     })
     .catch(err => next({ err }));
 };
 
 userController.setServicesCookie = (req, res, next) => { 
-  const { username } = req.query;
+  const { username } = req.body;
   console.log('username', username);
   const values = [username];
   
@@ -98,7 +98,7 @@ userController.searchServices = (req, res, next) => {
     url: 'https://streaming-availability.p.rapidapi.com/get/basic',
     params: { country: 'us', imdb_id: `${res.locals.imdb}` },
     headers: {
-      'x-rapidapi-key': variables.imdbAPI,
+      'x-rapidapi-key': variables.streamingAPI,
       'x-rapidapi-host': 'streaming-availability.p.rapidapi.com',
     },
   };
