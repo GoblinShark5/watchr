@@ -18,19 +18,18 @@ app.get('/', (req, res) => {
   res.status(200).sendFile(path.resolve(__dirname, '../index.html'));
 });
 
-app.use('/', apiRouter);
+app.use('/api', apiRouter);
 
 app.use((req, res) =>
-  res.status(404).send('404040404040404040404040404 error'),
+  res.status(404).send('Unable to find page'),
 );
 
 app.use((err, req, res) => {
-  res.status(500);
-  res.send('god fucking damnit an error occurred');
+  res.status(500).send('A global error occurred');
 });
 
 app.listen(3000, () => {
   console.log('Server listening on port: 3000');
 });
 
-module.exports = app;
+//module.exports = app;

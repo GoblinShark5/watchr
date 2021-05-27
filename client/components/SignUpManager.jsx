@@ -162,7 +162,7 @@ const SignUpManager = () => {
     e.preventDefault();
     console.log('Clicked submit on SignUp');
 
-    fetch('/signup', {
+    fetch('/api/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

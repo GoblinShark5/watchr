@@ -7,6 +7,7 @@ import HomePage from './HomePage.jsx';
 
 class MainContainer extends React.Component {
   render() {
+    // console.log(document.cookie)
     return (
       <div>
         <Switch>

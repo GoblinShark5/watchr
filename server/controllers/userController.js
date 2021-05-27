@@ -2,16 +2,32 @@
 const axios = require('axios');
 const db = require('../models/userModels');
 const config = require('../../api-key.json');
+const bcrypt = require('bcrypt')
+
+const saltRounds = 10;
 
 const userController = {};
+
+userController.bcrypt = (req, res, next) => {
+  const { newPassword } = req.body;
+  
+  bcrypt.genSalt(saltRounds, (err, salt) => {
+    bcrypt.hash(newPassword, salt, (err, hash) => {
+      res.locals.bcrypt = hash;
+      return next();
+    })
+  });
+}
 
 userController.signup = (req, res, next) => {
   console.log('Signup body', req.body);
   console.log('Signup query', req.query);
+  console.log('inside signup', res.locals.bcrypt);
+
   const query = `
-  INSERT INTO users(username, email, password, netflix, hulu, amazon)
+  INSERT INTO watchst.users(username, email, password, netflix, hulu, amazon)
   VALUES ('${req.body.newUser}', '${req.body.email}', '${
-    req.body.newPassword
+    res.locals.bcrypt
   }' , 
   '${JSON.parse(req.body.netflix)}', '${JSON.parse(req.body.hulu)}',
   '${JSON.parse(req.body.amazon)}')
@@ -28,45 +44,56 @@ userController.signup = (req, res, next) => {
 
 userController.login = (req, res, next) => {
   const loginQuery = `
-  SELECT username, password
-  FROM users
-  WHERE username = '${req.body.username}' AND password = '${req.body.password}'
+  SELECT password
+  FROM watchst.users
+  WHERE username = '${req.body.username}'
   `;
 
   console.log('Made it to the login controller');
-  db.query(loginQuery, (err, data) => {
-    if (err) {
+  db.query(loginQuery)
+    .then(data => {
+      // console.log(data);
+      bcrypt.compare(req.body.password, data.rows[0].password, (err, result) => {
+        if (err) {
+          return next(err);
+        }
+        if (result) {
+          console.log('bcrypt compare', result);
+          res.locals.correctPW = result;
+          return next();
+        }
+        else return next('Incorrect username/password');
+      })
+    })
+    .catch(err => {
       console.log(`Database request error! ${err}`);
       return next(err);
-    }
-    if (data.rows[0]) {
-      next();
-    } else {
-      res.redirect('/login');
-    }
-    // console.log(`Successfully got data from database ${data.rows}`);
-    // res.locals.user = data.rows;
-    // return next();
-  });
+    })
+
 };
 
 userController.setServices = (req, res, next) => {
   const query = `
-  SELECT netflix, hulu, amazon
-  FROM users
+  SELECT _id, netflix, hulu, amazon
+  FROM watchst.users
   WHERE username = '${req.body.username}'
   `;
 
   console.log('made it to the cookie controller');
 
-  db.query(query).then((data) => {
-    // console.log(typeof data.rows[0].netflix);
-    console.log(data.rows[0]);
-    data.rows[0].prime = data.rows[0].amazon;
-    delete data.rows[0].amazon;
-    res.cookie('userServices', JSON.stringify(data.rows[0]));
-    next();
-  });
+  db.query(query)
+    .then((data) => {
+      // console.log(typeof data.rows[0].netflix);
+      console.log('data.rows', data.rows[0]);
+      data.rows[0].prime = data.rows[0].amazon;
+      delete data.rows[0].amazon;
+      res.cookie('userServices', JSON.stringify(data.rows[0]));
+      res.locals.cookie = data.rows[0];
+      next();
+    })
+    .catch((err) => {
+      return next(err);
+    })
 };
 
 userController.searchServices = (req, res, next) => {
