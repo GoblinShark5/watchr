@@ -3,7 +3,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 // import { Redirect } from 'react-router-dom';
-import './styles/LoginManager.css';
 // transition from class to function
 const LoginManager = () => {
   console.log(

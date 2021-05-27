@@ -5,18 +5,16 @@ import SignUpManager from './SignUpManager.jsx';
 import LoginManager from './LoginManager.jsx';
 import HomePage from './HomePage.jsx';
 
-class MainContainer extends React.Component {
-  render() {
-    return (
-      <div>
-        <Switch>
-          <Route exact path="/" component={LoginManager} />
-          <Route path="/signup" component={SignUpManager} />
-          <Route path="/homepage" component={HomePage} />
-        </Switch>
-      </div>
-    );
-  }
+const MainContainer = () => {
+  return (
+    <div>
+      <Switch>
+        <Route exact path="/" component={LoginManager} />
+        <Route path="/signup" component={SignUpManager} />
+        <Route path="/homepage" component={HomePage} />
+      </Switch>
+    </div>
+  );
 }
 
 export default MainContainer;

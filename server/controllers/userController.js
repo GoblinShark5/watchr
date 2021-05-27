@@ -9,7 +9,7 @@ userController.signup = (req, res, next) => {
   console.log('Signup body', req.body);
   console.log('Signup query', req.query);
   const query = `
-  INSERT INTO users(username, email, password, netflix, hulu, amazon)
+  INSERT INTO watchst.users(username, email, password, netflix, hulu, amazon)
   VALUES ('${req.body.newUser}', '${req.body.email}', '${
     req.body.newPassword
   }' , 
@@ -29,7 +29,7 @@ userController.signup = (req, res, next) => {
 userController.login = (req, res, next) => {
   const loginQuery = `
   SELECT username, password
-  FROM users
+  FROM watchst.users
   WHERE username = '${req.body.username}' AND password = '${req.body.password}'
   `;
 
@@ -53,7 +53,7 @@ userController.login = (req, res, next) => {
 userController.setServices = (req, res, next) => {
   const query = `
   SELECT netflix, hulu, amazon
-  FROM users
+  FROM watchst.users
   WHERE username = '${req.body.username}'
   `;
 
@@ -70,7 +70,7 @@ userController.setServices = (req, res, next) => {
 };
 
 userController.searchServices = (req, res, next) => {
-  // check the properties in the cookie to check which services the user has, save that in a variable, array of strings if true
+  // check the properties in the  ie to check which services the user has, save that in a variable, array of strings if true
   console.log('Search query: ', req.body.search);
   const array = [];
   const userServices = JSON.parse(req.cookies.userServices);
@@ -102,7 +102,7 @@ userController.searchServices = (req, res, next) => {
   axios
     .request(options)
     .then((response) => {
-      res.locals.kyung = {};
+      res.locals.available = {};
       // console.log('API Response.data: ', response.data);
       console.log('posterURL', response.data.posterURLs['500']);
       console.log('streaming info: ', response.data.streamingInfo);
@@ -111,12 +111,12 @@ userController.searchServices = (req, res, next) => {
       Object.keys(response.data.streamingInfo).forEach((el) => {
         // Test if the streaming servics from the returned object match the user's cookies streaming services, if so add to returned object
         if (array.includes(el)) {
-          res.locals.kyung[el] = true;
+          res.locals.available[el] = true;
         }
       });
       // STEP 2: Add poster and title to the obj
-      res.locals.kyung.poster = response.data.posterURLs['342'];
-      res.locals.kyung.title = response.data.title;
+      res.locals.available.poster = response.data.posterURLs['342'];
+      res.locals.available.title = response.data.title;
 
       next();
     })

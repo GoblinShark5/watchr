@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon server/server.js",
     "build": "webpack --mode production",
-    "dev": "concurrently \"node server/server.js\" \"webpack serve --open\"",
+    "dev": "concurrently \"nodemon server/server.js\" \"webpack serve --open\"",
     "test": "jest"
   },
   "repository": {
@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/kyunglee1/watcher#readme",
   "dependencies": {
-    "@types/react-transition-group": "^4.4.1",  
+    "@types/react-transition-group": "^4.4.1",
     "axios": "^0.21.1",
     "classnames": "^2.3.1",
     "cookie-parser": "^1.4.5",
