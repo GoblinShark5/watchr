@@ -17,21 +17,13 @@ class MovieInput extends React.Component {
     this.setState({
       movieInput: e.target.value,
     });
-  }
+  };
 
   handleSubmit() {
-    fetch('/movie/search', {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-      },
-      body: JSON.stringify({
-        search: this.state.movieInput,
-      }),
-    })
+    fetch(`/movie/search/?title=${this.state.movieInput}`)
       .then((res) => res.json())
       .then((data) => this.props.onResponse(data));
-  }
+  };
 
   render() {
     return (

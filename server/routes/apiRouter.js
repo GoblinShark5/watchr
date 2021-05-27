@@ -8,11 +8,6 @@ const userController = require('../controllers/userController');
 
 const router = express.Router();
 
-// is anything fetching from /homepage?
-// router.get('/homepage', (req, res) => {
-//   res.status(200).sendFile(path.resolve(__dirname, '../index.html'));
-// });
-
 
 
 module.exports = router;

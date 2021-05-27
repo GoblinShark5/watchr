@@ -10,7 +10,7 @@ const router = express.Router();
 router.post('/signup',
   userController.signup,
   (req, res) => {
-    return res.status(200).send({ user: res.locals.newUser });
+    res.status(200).send({ user: res.locals.newUser })
   });
 
 // send back user data

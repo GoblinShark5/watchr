@@ -1,6 +1,5 @@
 -- place to work on schema commands to create db tables
 
-
 CREATE SCHEMA "watchr";
 
 SET statement_timeout = 0;
