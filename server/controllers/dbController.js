@@ -5,7 +5,7 @@ const pgp = require('pg-promise')({
 const db = require('../models/userModels');
 
 const pgpdb = pgp(
-  'postgres://ajocojat:Xhe0L8OJP5qmAAaktHhXaz2UFiujau2a@kashin.db.elephantsql.com/ajocojat',
+  'postgres://ssigjlks:Zb12dIhHTONQtoKMuTSyXWc2VlVcE6zm@kashin.db.elephantsql.com/ssigjlks',
 );
 
 const dbController = {};

@@ -1,6 +1,6 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/destructuring-assignment */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 // import { Redirect } from 'react-router-dom';
 // transition from class to function
@@ -9,13 +9,44 @@ const LoginManager = () => {
     '%cLogin Initiated!',
     'font-weight: bold; font-size: 53px;color: red; text-shadow: 3px 3px 0 rgb(217,31,38), 6px 6px 0 rgb(226,91,14), 9px 9px 0 rgb(245,221,8) , 12px 12px 0 rgb(5,148,68) , 15px 15px 0 rgb(2,135,206) , 18px 18px 0 rgb(4,77,145) , 21px 21px 0 rgb(42,21,113)',
   );
+
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleUsernameChange = (e) => {
+    setUsername(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleSubmit = () => {
+    fetch('/api/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username,
+        password
+      }),
+    })
+      .then((res) => {
+        console.log('RES: ', res);
+        return res.json();
+      })
+      .then((data) => console.log('Data received: ', data))
+      .catch((err) => console.log('Err received in fetch: ', err));
+  };
+
   return (
     <div id="login-container">
-      <form method="POST" action="/login" className="Login-Manager">
+      <form onSubmit={handleSubmit}>
         Username:
-        <input name="username" className="user" type="text" />
+        <input name="username" value={username} className="user" type="text" onChange={handleUsernameChange} />
         Password:
-        <input name="password" className="Password" type="password" />
+        <input name="password" value={password} className="password" type="password" onChange={handlePasswordChange}/>
         <br /> <br />
         <button type="submit" className="Loginbutton">
           Log In
