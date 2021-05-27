@@ -11,10 +11,10 @@ module.exports = {
   },
 
   devServer: {
-    publicPath: '/build',
+    publicPath: '/build/',
     port: 8080,
     proxy: {
-      '/api': 'http://localhost:3000',
+      '/': 'http://localhost:3000',
     },
   },
 

@@ -31,7 +31,7 @@ const SignUpManager = () => {
     e.preventDefault();
     console.log('Clicked submit on SignUp');
 
-    fetch('http://localhost:3000/user/signup', {
+    fetch('http://localhost:3000/user/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

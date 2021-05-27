@@ -10,17 +10,16 @@ const router = express.Router();
 router.post('/',
   userController.signup,
   (req, res) => {
-    res.status(200).send('Signed Up');
+    return res.status(200).send({ user: res.locals.newUser });
   });
-
 
 // send back user data
 router.get(
-  '/login',
+  '/',
   userController.login,
-  userController.setServices,
+  userController.setServicesCookie,
   (req, res) => {
-    res.status(200).send('Logged In');
+    res.status(200).send({ user: res.locals.user });
   });
 
 module.exports = router;

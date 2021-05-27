@@ -8,8 +8,9 @@ const userController = {};
 
 // You will need to defend against SQL injection attacks here
 userController.signup = (req, res, next) => {
-  console.log('Signup body', req.body);
-  const { newUser, newPassword, email, netflix, amazon, hulu } = req.body;
+  const {
+    newUser, newPassword, email, netflix, amazon, hulu,
+  } = req.body;
   const values = [newUser, email, newPassword, netflix, hulu, amazon];
   const query = `
   INSERT INTO watchr.users(username, email, password, netflix, hulu, amazon)
@@ -18,7 +19,7 @@ userController.signup = (req, res, next) => {
 
   db.query(query, values)
     .then(response => {
-      console.log('signup response', response);
+      res.locals.newUser = response.rows[0];
       return next();
     })
     .catch((err) => {
@@ -28,67 +29,52 @@ userController.signup = (req, res, next) => {
     });
 };
 
-// EXAMPLE FROM OUR GREAT TIME TOGETHER, JUSTIN !!!!
-// starWarsController.getHomeworld = (req, res, next) => {
-//   // write code here
-//   const { id } = req.query;
-//   const sqlQuery = 'SELECT * FROM planets WHERE _id = $1;';
-  
-//   // writing some code here
-//   db
-//     .query(sqlQuery, [id])
-//     .then(dbRes => {
-//       res.locals.homeworld = dbRes.rows[0];
-//       return next();
-//     })
-//     .catch(err => next({ err }));
-// };
+userController.login = (req, res, next) => {
+  const { username, password } = req.query;
+  const values = [username, password];
 
-userController.login = (req, res, next) => { // You will need to defend against SQL injection attacks here
   const loginQuery = `
   SELECT username, password
-  FROM users
-  WHERE username = '${req.body.username}' AND password = '${req.body.password}'
+  FROM watchr.users
+  WHERE username = $1 AND password = $2;
   `;
 
-  console.log('Made it to the login controller');
-  db.query(loginQuery, (err, data) => {
-    if (err) {
-      console.log(`Database request error! ${err}`);
-      return next(err);
-    }
-    if (data.rows[0]) {
-      next();
-    } else {
-      res.redirect('/login');
-    }
-    // console.log(`Successfully got data from database ${data.rows}`);
-    // res.locals.user = data.rows;
-    // return next();
-  });
+  db.query(loginQuery, values)
+    .then(data => {
+      res.locals.user = data.rows[0];
+      return next();
+    })
+    .catch(err => next({ err }));
 };
 
-userController.setServices = (req, res, next) => { // You will need to defend against SQL injection attacks here
+userController.setServicesCookie = (req, res, next) => { 
+  const { username } = req.query;
+  console.log('username', username);
+  const values = [username];
+  
   const query = `
   SELECT netflix, hulu, amazon
-  FROM users
-  WHERE username = '${req.body.username}'
+  FROM watchr.users
+  WHERE username = $1;
   `;
 
   console.log('made it to the cookie controller');
 
-  db.query(query).then((data) => {
-    // console.log(typeof data.rows[0].netflix);
-    console.log(data.rows[0]);
-    data.rows[0].prime = data.rows[0].amazon;
-    delete data.rows[0].amazon;
-    res.cookie('userServices', JSON.stringify(data.rows[0]));
-    next();
-  });
-};
+  db.query(query, values)
+    .then((data) => {
+      // take query response and add info to cookies
+      data.rows[0].prime = data.rows[0].amazon;
+      delete data.rows[0].amazon;
+      res.cookie('userServices', JSON.stringify(data.rows[0]));
+      return next();
+    })
+    .catch(err => next({ err }));
+  };
 
 userController.searchServices = (req, res, next) => {
-  // check the properties in the cookie to check which services the user has, save that in a variable, array of strings if true
+  // check the properties in the cookie to check which services the user has,
+  // save that in a variable,
+  // array of strings if true
   console.log('Search query: ', req.body.search);
   const array = [];
   const userServices = JSON.parse(req.cookies.userServices);
