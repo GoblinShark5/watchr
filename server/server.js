@@ -19,7 +19,6 @@ const movieRouter = require('./routes/movieRouter');
 app.use('/user', userRouter);
 app.use('/movie', movieRouter);
 
-
 // send HTML
 app.get('/', (req, res) => {
   res.status(200).sendFile(path.resolve(__dirname, '../index.html'));

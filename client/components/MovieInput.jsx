@@ -20,7 +20,7 @@ class MovieInput extends React.Component {
   }
 
   handleSubmit() {
-    fetch('/search', {
+    fetch('/movie/search', {
       method: 'POST',
       headers: {
         'content-type': 'application/json',

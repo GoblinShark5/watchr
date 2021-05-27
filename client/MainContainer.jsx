@@ -3,6 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import HomePage from './components/HomePage.jsx';
+// import NavBar from './components/NavBar';
 
 import FavoritesView from './views/FavoritesView.jsx';
 import HomeView from './views/HomeView.jsx';
