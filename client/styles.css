@@ -1,28 +1,58 @@
-html, body {
+body {
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'Lato', sans-serif;  
+  background-color: #1d3557;
+}
+
+a {
+  text-decoration: none;
+}
+
+
+.title {
+  text-align: center;
+  font-size: 200px;
+  letter-spacing: 0.1em;
+  color: white;
+  transition: transform 250ms;
+}
+
+.title:hover {
+  transform: scale(1.1);
 }
 
 
 /* LoginManager Styles */
 #login-container {
-  width: 100vw;
-  display: flex;
-  justify-content: left;
+  margin-bottom: 50px;
   align-items: center;
   text-align: center;
-  z-index: -1;
-  flex-direction: column;
-  height: 50vw;
-  background: radial-gradient(
-    #833AB4 17%,
-    #F61F26 47%,
-    #FD1D1D 77%,
-    #FCB045 100%
-  );
+  border: 1px solid black;
+  width: 375px;
+  height: 400px;
+  padding-top: 75px;
+  background-color: #457B9D;
+  border-radius: 10px;
 }
-.Login-Manager {
+
+.loginInfo {
+  width: 100%;
+}
+
+
+#login {
+  width: 60%;
+  color: white;
+}
+
+#signup {
+  width: 60%;
+  font-size: small;
+  color: white;
+}
+
+/* .Login-Manager {
   border-style: solid;
   align-content: center;
   border: solid 1px rgb(0, 0, 0);
@@ -38,7 +68,7 @@ html, body {
   background-position: center;
   max-width: 600px;
   max-height: 800px;
-}
+} */
 .stander {
   display: flex;
   margin-top: -28.15em;
@@ -61,32 +91,34 @@ html, body {
 
 /* Signup Styles */
 #signup-container {
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
+  margin-bottom: 50px;
   align-items: center;
-  background-color: rgb(5, 20, 70);
+  text-align: center;
+  border: 1px solid black;
+  width: 375px;
+  height: 400px;
+  background-color: #457B9D;
+  border-radius: 10px;
 }
   
 #signup-title {
   display: flex;
   justify-content: center;
   font-size: 1.4rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-#signup-form {
+/* #signup-form {
   border: .3rem groove rgb(255, 255, 255);
   border-radius: 1rem;
   width: 18%;
-  padding: 2rem;
   padding-bottom: 1rem;
-  background-color: rgb(158, 199, 253);
-}
+  color: white;
+} */
 
-#signup-email,
+/* #signup-email,
 #signup-username,
 #signup-password {
   display: flex;
@@ -121,7 +153,7 @@ html, body {
   -webkit-border-radius: 5px;
   border-radius: 5px;
   border: thin solid black;
-}
+} */
 
 #streams-container {
   border: none;
@@ -141,7 +173,7 @@ html, body {
 #streams-container span {
   margin: 2rem;
   font-size: 1.3rem;
-}
+} */
 
 #stream-checkbox-container {
   display: flex;
@@ -164,17 +196,18 @@ html, body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgb(5, 15, 59);
+  /* background-color: rgb(5, 15, 59); */
 }
 
 
 #display-container {
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: fit-content;
   padding: 2rem;
-  border: .5rem double rgb(124, 0, 0);
+  border: 1px solid #999999;
   background-color: rgb(235, 243, 252);
 }
   
@@ -183,10 +216,6 @@ html, body {
 }
 
 
-
-.user {
-  margin-right: 2em;
-}
 .imagine {
   border-style: solid;
   border-width: thin;
@@ -214,7 +243,7 @@ html, body {
   border-left: none;
   border-right: none;
   color: white;
-  background-color: rgba(7, 55, 99, 0.425);;
+  background-color: #457B9D;
   border-radius: 1rem;
 
 }
@@ -229,7 +258,6 @@ html, body {
 #movie-input input {
   width: 65%;
   border: none;
-  border-bottom: .2rem groove rgb(255, 255, 255);
   margin-right: 1rem;
   outline: none;
   padding-left: .5rem;
@@ -240,10 +268,8 @@ html, body {
 
 #movie-input button {
   padding: .4rem;
-  border: .1rem solid white;
   color: white;
-  background-color: rgb(126, 187, 245);
-  border-radius: .7rem;
+  /* background-color: rgb(126, 187, 245); */
 }
 
 #movie-input-title {

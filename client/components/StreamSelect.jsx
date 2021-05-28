@@ -3,6 +3,7 @@
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
 
+//creates StreamSelect react component checkbox to select streams while signing up
 const StreamSelect = (props) => (
   <div id="stream-checkbox-container">
     <div className="stream-checkbox">

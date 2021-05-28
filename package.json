@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server/server.js",
-    "build": "webpack --mode production",
-    "dev": "concurrently \"nodemon server/server.js\" \"webpack serve --open\"",
+    "start": "node server/server.js",
+    "build": "webpack NODE_ENV=production",
+    "dev": "concurrently \"nodemon server/server.js\" \"NODE_ENV=development webpack serve --open\"",
     "test": "jest"
   },
   "repository": {
@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/kyunglee1/watcher#readme",
   "dependencies": {
+    "@material-ui/core": "^4.11.4",
     "@types/react-transition-group": "^4.4.1",
     "axios": "^0.21.1",
     "bcrypt": "^5.0.1",
