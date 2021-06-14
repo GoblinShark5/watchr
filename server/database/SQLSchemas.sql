@@ -1,63 +1,29 @@
-// place to work on schema commands to create db tables
+--place to work on schema commands to create db tables
 
 
-CREATE SCHEMA "watchrschema";
+CREATE SCHEMA watchst;
 
-CREATE TABLE watchrschema.users (
-  "id" SMALLSERIAL PRIMARY KEY,
+CREATE TABLE watchst.users (
+  "_id" SERIAL PRIMARY KEY,
   "username" varchar NOT NULL,
   "email" varchar NOT NULL,
   "password" varchar NOT NULL,
   "netflix" boolean NOT NULL,
   "hulu" boolean NOT NULL,
-  "amazon" boolean NOT NULL,
+  "amazon" boolean NOT NULL
 );
 
-CREATE TABLE watchrschema.amazon (
-  "id" SMALLSERIAL PRIMARY KEY,
-  "movieName" varchar NOT NULL,
-  "img" varchar NOT NULL,
-  "streamingInfo" varchar NOT NULL,
+CREATE TABLE watchst.watchlist (
+  "_id" SERIAL PRIMARY KEY,
+  "movie_title" varchar NOT NULL,
+  "user_id" int REFERENCES watchst.users (_id) NOT NULL, 
+  "netflix" boolean NOT NULL,
+  "hulu" boolean NOT NULL,
+  "amazon" boolean NOT NULL
 );
 
-CREATE TABLE watchrschema.hulu (
-  "id" SMALLSERIAL PRIMARY KEY,
-  "movieName" varchar NOT NULL,
-  "img" varchar NOT NULL,
-  "streamingInfo" varchar NOT NULL,
-);
 
-CREATE TABLE watchrschema.netflix (
-  "id" SMALLSERIAL PRIMARY KEY,
-  "movieName" varchar NOT NULL,
-  "img" varchar NOT NULL,
-  "streamingInfo" varchar NOT NULL,
-);
-
--- CREATE TABLE watchrschema.users (
---   "username" varchar PRIMARY KEY,
---   "email" varchar NOT NULL,
---   "password" varchar NOT NULL,
---   "amazon" boolean NOT NULL DEFAULT false,
---   "netflix" boolean NOT NULL DEFAULT false,
---   "hulu" boolean NOT NULL DEFAULT false
--- );
-
--- CREATE TABLE watchrschema.usersmovies (
---   "username" varchar,
---   "moviename" varchar,
---   PRIMARY KEY ("username", "moviename")
--- );
-
--- CREATE TABLE watchrschema.movies (
---   "moviename" varchar PRIMARY KEY,
---   "description" varchar NOT NULL,
---   "amazon" boolean NOT NULL DEFAULT false,
---   "netflix" boolean NOT NULL DEFAULT false,
---   "hulu" boolean NOT NULL DEFAULT false
--- );
-
--- ALTER TABLE watchrschema.usersmovies ADD FOREIGN KEY ("username") REFERENCES watchrschema.users ("username");
+-- ALTER TABLE watchrschema.users ADD FOREIGN KEY ("user_id") REFERENCES watchrschema.users ("_id");
 
 -- ALTER TABLE watchrschema.usersmovies ADD FOREIGN KEY ("moviename") REFERENCES watchrschema.movies ("moviename");
 

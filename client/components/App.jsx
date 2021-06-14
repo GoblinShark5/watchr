@@ -1,12 +1,24 @@
 /* eslint-disable react/prefer-stateless-function */
 import React from 'react';
-import MainContainer from './MainContainer.jsx';
-import './styles/App.css';
+import { BrowserRouter as Switch, Route } from 'react-router-dom';
+import SignUpManager from './SignUpManager.jsx';
+import LoginManager from './LoginManager.jsx';
+import HomePage from './HomePage.jsx';
 
-class App extends React.Component {
-  render() {
-    return <MainContainer />;
-  }
+
+// defines App component and Routes to render specific component views
+// uses react switch/routes to render different views
+
+const App = () => {
+  return (
+    <div>
+      <div className="title">WATCHST</div>
+      <Switch>
+        <Route exact path="/" component={LoginManager} />
+        <Route path="/signup" component={SignUpManager} />
+        <Route path="/homepage" component={HomePage} />
+      </Switch>
+    </div>
+  );
 }
-
 export default App;

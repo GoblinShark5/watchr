@@ -1,53 +1,44 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/destructuring-assignment */
-import React from 'react';
-import './styles/MovieInput.css';
+import React, { useState } from 'react';
+import { Button, TextField } from '@material-ui/core';
 
-class MovieInput extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      movieInput: '',
-    };
-    this.handleOnMovieChange = this.handleOnMovieChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+//create MovieInput react component which acts as searchbar for looking up movies
+const MovieInput = (props) => {
+
+  const [movieInput, setMovieInput] = useState('');
+
+  //updates state to reflect user input as it is entered
+  function handleOnMovieChange(e) {
+    setMovieInput(e.target.value);
   }
 
-  handleOnMovieChange(e) {
-    this.setState({
-      movieInput: e.target.value,
-    });
-  }
-
-  handleSubmit() {
-    fetch('/search', {
+  //when user submits search term, sends a post request to retrieve availability of movie from each streaming service
+  //and retrieves movie poster
+  function handleSubmit(e) {
+    e.preventDefault();
+    fetch('/api/search', {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
       },
       body: JSON.stringify({
-        search: this.state.movieInput,
+        search: movieInput,
       }),
     })
       .then((res) => res.json())
-      .then((data) => this.props.onResponse(data));
+      .then((data) => props.onResponse(data))
   }
 
-  render() {
-    return (
-      <div id="movie-input-container">
-        <div id="movie-input-title">Where to stream</div>
-        <div id="movie-input">
-          <input
-            type="text"
-            onChange={this.handleOnMovieChange}
-            value={this.state.movieInput}
-          />
-          <button onClick={this.handleSubmit}>Search</button>
-        </div>
-      </div>
-    );
-  }
+  return (
+    <div id="movie-input-container">
+      <div id="movie-input-title">Where to stream</div>
+      <form id="movie-input" onSubmit={handleSubmit}>
+        <TextField label="Search titles" type="text" onChange={handleOnMovieChange} color="secondary" value={movieInput}/>
+        <Button variant="contained" type="submit" color="secondary" id="login">Search</Button>
+      </form>
+    </div>
+  );
 }
 
 export default MovieInput;
